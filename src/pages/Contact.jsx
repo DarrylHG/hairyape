@@ -207,8 +207,18 @@ export default function Contact() {
                 </div>
 
                 <div className="mt-6">
-                  <Button className="w-full bg-white text-cyan-700 hover:bg-slate-100 font-semibold rounded-full py-3">
-                    WhatsApp Us Now
+                  <Button
+                    asChild
+                    className="w-full rounded-full py-3 text-sm md:text-base font-semibold
+                              bg-emerald-500 hover:bg-emerald-600 text-white shadow-md"
+                  >
+                    <a
+                      href="https://wa.me/65XXXXXXXX"  // put your real WhatsApp number here
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      WhatsApp Us Now
+                    </a>
                   </Button>
                 </div>
               </div>
