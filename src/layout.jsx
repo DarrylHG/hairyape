@@ -20,7 +20,6 @@ function Layout({ children }) {
       {/* NAVBAR */}
       <header className="w-full bg-white/90 backdrop-blur border-b border-slate-200 sticky top-0 z-50">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          
           {/* Logo */}
           <a href="/" className="flex items-center gap-2">
             <img
@@ -64,7 +63,6 @@ function Layout({ children }) {
             className="md:hidden text-sky-900 focus:outline-none"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
-            {/* Hamburger Icon */}
             <svg
               className="w-7 h-7"
               fill="none"
@@ -73,14 +71,12 @@ function Layout({ children }) {
               viewBox="0 0 24 24"
             >
               {mobileOpen ? (
-                // Close Icon
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M6 18L18 6M6 6l12 12"
                 />
               ) : (
-                // Hamburger Icon
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -111,7 +107,6 @@ function Layout({ children }) {
                 </NavLink>
               ))}
 
-              {/* Mobile CTA */}
               <NavLink
                 to="/Contact"
                 onClick={() => setMobileOpen(false)}
