@@ -1,0 +1,1 @@
+export function createPageUrl(p){return !p||p==='Home'?'/':`/${p}`;}
