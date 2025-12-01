@@ -154,8 +154,8 @@ export default function Rates() {
                     </div>
 
                     <p className="mt-2 text-xs text-slate-500 text-center md:text-left">
-                      * Final rates may vary by location, pool rental and coach
-                      availability.
+                      * Enquire now to get your preferred schedule, coach
+                      and quotation.
                     </p>
                   </div>
                 );
@@ -198,8 +198,8 @@ export default function Rates() {
                     </div>
 
                     <div className="text-xs text-slate-500">
-                      * Final rates may vary by location, pool rental and coach
-                      availability.
+                      * Enquire now to get your preferred schedule, coach
+                      and quotation.
                     </div>
                   </div>
                 </div>
