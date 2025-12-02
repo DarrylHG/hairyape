@@ -114,7 +114,7 @@ export default function Contact() {
                 {/* Location / timing */}
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">
-                    Condo / Area or Preferred Pool
+                    Condo / Area Preference
                   </label>
                   <Input
                     type="text"
@@ -189,7 +189,7 @@ export default function Contact() {
                     <MapPin className="mt-0.5 h-5 w-5 text-cyan-300" />
                     <div>
                       <p className="font-semibold text-white">Based in</p>
-                      <p className="text-sky-100">Singapore (ActiveSG &amp; condo pools)</p>
+                      <p className="text-sky-100">Singapore (Condo pools)</p>
                     </div>
                   </div>
 
@@ -200,7 +200,9 @@ export default function Contact() {
                       <p className="text-sky-100">
                         Mon–Fri: 10am – 7pm
                         <br />
-                        Sat: 9am – 1pm
+                        Sat: 9am – 5pm
+                        <br />
+                        Sun: 9am - 5pm
                       </p>
                     </div>
                   </div>
