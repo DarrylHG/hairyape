@@ -213,7 +213,7 @@ export default function Contact() {
                               bg-emerald-500 hover:bg-emerald-600 text-white shadow-md"
                   >
                     <a
-                      href="https://wa.me/65XXXXXXXX"  // put your real WhatsApp number here
+                      href="https://wa.me/6589510121"  // put your real WhatsApp number here
                       target="_blank"
                       rel="noreferrer"
                     >
