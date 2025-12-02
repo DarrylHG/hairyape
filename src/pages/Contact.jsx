@@ -118,7 +118,7 @@ export default function Contact() {
                   </label>
                   <Input
                     type="text"
-                    placeholder="E.g. Punggol – Waterway Terraces, or Jurong East Swimming Complex"
+                    placeholder="E.g. Punggol – Waterway Terraces"
                     className="bg-white"
                   />
                 </div>
@@ -200,9 +200,9 @@ export default function Contact() {
                       <p className="text-sky-100">
                         Mon–Fri: 10am – 7pm
                         <br />
-                        Sat: 9am – 5pm
+                        Sat/Sun: 9am – 5pm
                         <br />
-                        Sun: 9am - 5pm
+                        Public Holidays: Closed
                       </p>
                     </div>
                   </div>
