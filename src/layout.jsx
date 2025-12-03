@@ -1,6 +1,7 @@
 // src/layout.jsx
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { User } from "lucide-react"; // 👈 NEW
 
 function Layout({ children }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -50,13 +51,29 @@ function Layout({ children }) {
             ))}
           </div>
 
-          {/* DESKTOP CTA */}
-          <NavLink
-            to="/Contact"
-            className="hidden md:block rounded-full bg-sky-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-sky-700"
-          >
-            Book Trial
-          </NavLink>
+          {/* DESKTOP RIGHT SIDE: Coach icon + Book Trial */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Coach / login icon */}
+            <NavLink
+              to="/coach-portal"
+              className={({ isActive }) =>
+                `inline-flex h-9 w-9 items-center justify-center rounded-full border
+                 border-sky-200 text-sky-700 hover:bg-sky-50 ${
+                   isActive ? "bg-sky-50" : ""
+                 }`
+              }
+            >
+              <User className="h-4 w-4" />
+            </NavLink>
+
+            {/* Book Trial CTA */}
+            <NavLink
+              to="/Contact"
+              className="rounded-full bg-sky-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-sky-700"
+            >
+              Book Trial
+            </NavLink>
+          </div>
 
           {/* MOBILE MENU BUTTON */}
           <button
@@ -107,6 +124,7 @@ function Layout({ children }) {
                 </NavLink>
               ))}
 
+              {/* Mobile Book Trial CTA (kept simple) */}
               <NavLink
                 to="/Contact"
                 onClick={() => setMobileOpen(false)}
