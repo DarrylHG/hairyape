@@ -1,7 +1,7 @@
 // src/layout.jsx
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { User } from "lucide-react"; // 👈 NEW
+import { User } from "lucide-react"; // Login icon
 
 function Layout({ children }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -21,6 +21,7 @@ function Layout({ children }) {
       {/* NAVBAR */}
       <header className="w-full bg-white/90 backdrop-blur border-b border-slate-200 sticky top-0 z-50">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+
           {/* Logo */}
           <a href="/" className="flex items-center gap-2">
             <img
@@ -51,9 +52,9 @@ function Layout({ children }) {
             ))}
           </div>
 
-          {/* DESKTOP RIGHT SIDE: Coach icon + Book Trial */}
+          {/* DESKTOP RIGHT SIDE */}
           <div className="hidden md:flex items-center gap-3">
-            {/* Coach / login icon */}
+            {/* Coach login icon */}
             <NavLink
               to="/coach-portal"
               className={({ isActive }) =>
@@ -66,7 +67,7 @@ function Layout({ children }) {
               <User className="h-4 w-4" />
             </NavLink>
 
-            {/* Book Trial CTA */}
+            {/* CTA */}
             <NavLink
               to="/Contact"
               className="rounded-full bg-sky-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-sky-700"
@@ -88,17 +89,9 @@ function Layout({ children }) {
               viewBox="0 0 24 24"
             >
               {mobileOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
@@ -108,6 +101,8 @@ function Layout({ children }) {
         {mobileOpen && (
           <div className="md:hidden bg-white text-sky-900 border-t border-slate-300 shadow-lg">
             <div className="flex flex-col px-6 py-4 gap-4 text-base font-medium">
+
+              {/* Standard nav items */}
               {navItems.map(({ to, label, end }) => (
                 <NavLink
                   key={to}
@@ -124,11 +119,27 @@ function Layout({ children }) {
                 </NavLink>
               ))}
 
-              {/* Mobile Book Trial CTA (kept simple) */}
+              {/* NEW — Coach login icon for mobile */}
+              <NavLink
+                to="/coach-portal"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-2 py-1 text-sky-900"
+              >
+                <div
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full border
+                             border-sky-300 text-sky-700"
+                >
+                  <User className="h-4 w-4" />
+                </div>
+                <span className="text-sky-900 font-medium">Coach Login</span>
+              </NavLink>
+
+              {/* Mobile CTA */}
               <NavLink
                 to="/Contact"
                 onClick={() => setMobileOpen(false)}
-                className="mt-2 w-full rounded-full bg-sky-600 px-5 py-2 text-center text-sm font-semibold text-white shadow hover:bg-sky-700"
+                className="mt-2 w-full rounded-full bg-sky-600 px-5 py-2 
+                           text-center text-sm font-semibold text-white shadow hover:bg-sky-700"
               >
                 Book Trial
               </NavLink>
