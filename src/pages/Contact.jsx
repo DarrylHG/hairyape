@@ -161,7 +161,7 @@ export default function Contact() {
             <aside className="space-y-6">
               <div className="bg-slate-900 text-sky-50 rounded-3xl p-6 md:p-8 shadow-lg">
                 <h2 className="text-xl md:text-2xl font-bold mb-4">
-                  Talk to a Human Coach
+                  Talk to a Human Ape Now!
                 </h2>
                 <p className="text-sm md:text-base text-sky-100 mb-4">
                   Prefer to chat first? Reach out via WhatsApp or email and we&apos;ll
