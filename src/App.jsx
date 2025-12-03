@@ -11,6 +11,8 @@ import Roadmap from "./pages/Roadmap.jsx";
 import Rates from "./pages/Rates.jsx";
 import FAQ from "./pages/FAQ.jsx";
 import Contact from "./pages/Contact.jsx";
+import CoachPortal from "./pages/CoachPortal";
+
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
         <Route path="/Rates" element={<Rates />} />
         <Route path="/FAQ" element={<FAQ />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/coach-portal" element={<CoachPortal />} />
       </Routes>
     </Layout>
   );
