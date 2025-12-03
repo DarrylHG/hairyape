@@ -131,7 +131,7 @@ function Layout({ children }) {
                 >
                   <User className="h-4 w-4" />
                 </div>
-                <span className="text-sky-900 font-medium">Coach Login</span>
+                <span className="text-sky-900 font-medium">Attendance Login</span>
               </NavLink>
 
               {/* Mobile CTA */}
