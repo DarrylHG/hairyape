@@ -61,8 +61,8 @@ export default function FAQ() {
                     Where are lessons held?
                   </AccordionTrigger>
                   <AccordionContent className="pb-4 text-sm md:text-base text-slate-700">
-                    We coach mainly at condo pools and selected ActiveSG
-                    complexes. Share your estate or preferred area when you
+                    We coach mainly at condo pools and landed residentials.
+                    Share your estate or preferred area when you
                     enquire and we will match you with the nearest available
                     coach or suggest a convenient pool.
                   </AccordionContent>
