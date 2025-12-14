@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 export default function Rates() {
   const rates = [
     {
-      name: "Babies & Toddlers",
-      bestFor: "1.5–4 years old",
+      name: "ApeStart™ Water Confidence",
+      bestFor: "0.5–4 years old",
       price: "From $70 / lesson",
       details: [
         "4 x 30-minute lessons (once a week)",
@@ -16,13 +16,33 @@ export default function Rates() {
       ],
     },
     {
-      name: "Children",
-      bestFor: "5–12 years old",
+      name: "ApeCore™ Learn-to-Swim",
+      bestFor: "5–10 years old",
       price: "From $70 / lesson",
       details: [
         "4 x 45-minute lessons (once a week)",
         "Held at private condo pools",
-        "Learn-to-swim and stroke refinement levels",
+        "Learn-to-swim with strong foundations for freestyle & backstroke",
+      ],
+    },
+    {
+      name: "SwimSafer® Programme",
+      bestFor: "6–12 years old",
+      price: "From $70 / lesson",
+      details: [
+        "4 x 45-minute lessons (once a week)",
+        "Aligned with SwimSafer® Stage 1–6 syllabus",
+        "Water safety, survival skills and assessment-based progression",
+      ],
+    },
+    {
+      name: "Stroke Refinement",
+      bestFor: "8–12 years old",
+      price: "From $70 / lesson",
+      details: [
+        "4 x 45-minute lessons (once a week)",
+        "Technique refinement across strokes with simple drills",
+        "Great for stamina, lap swimming and school team readiness",
       ],
     },
     {
