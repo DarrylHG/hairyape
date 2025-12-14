@@ -156,16 +156,33 @@ Thank you! Please share available trial slots.`;
                   <label className="block text-sm font-medium text-slate-700 mb-1">
                     Swimming Experience
                   </label>
+
+                  {/* ====== ONLY EDIT: white dropdown fix ====== */}
                   <select
-                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm
+                               text-slate-900 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                    style={{ colorScheme: "light" }}
                     value={experience}
                     onChange={(e) => setExperience(e.target.value)}
                   >
-                    <option value="">Select one</option>
-                    <option>Totally new to water</option>
-                    <option>Comfortable in shallow pool, can&apos;t swim yet</option>
-                    <option>Can swim a short distance</option>
-                    <option>Confident swimmer, needs stroke refinement</option>
+                    <option
+                      value=""
+                      style={{ color: "#0f172a", backgroundColor: "#ffffff" }}
+                    >
+                      Select one
+                    </option>
+                    <option style={{ color: "#0f172a", backgroundColor: "#ffffff" }}>
+                      Totally new to water
+                    </option>
+                    <option style={{ color: "#0f172a", backgroundColor: "#ffffff" }}>
+                      Comfortable in shallow pool, can&apos;t swim yet
+                    </option>
+                    <option style={{ color: "#0f172a", backgroundColor: "#ffffff" }}>
+                      Can swim a short distance
+                    </option>
+                    <option style={{ color: "#0f172a", backgroundColor: "#ffffff" }}>
+                      Confident swimmer, needs stroke refinement
+                    </option>
                   </select>
                 </div>
 
@@ -218,8 +235,8 @@ Thank you! Please share available trial slots.`;
                     Send Enquiry
                   </Button>
                   <p className="mt-2 text-xs text-slate-500">
-                    * This is a demo form – you can later connect it to email,
-                    WhatsApp or a booking system.
+                    By submitting, you agree to our use of WhatsApp to contact
+                    you regarding your enquiry.
                   </p>
                 </div>
               </form>
