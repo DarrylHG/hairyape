@@ -1,11 +1,54 @@
 // src/pages/Contact.jsx
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export default function Contact() {
+  // ====== ADDED (state) ======
+  const [parentName, setParentName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [email, setEmail] = useState("");
+  const [childName, setChildName] = useState("");
+  const [childAge, setChildAge] = useState("");
+  const [experience, setExperience] = useState("");
+  const [area, setArea] = useState("");
+  const [preferredTiming, setPreferredTiming] = useState("");
+  const [extra, setExtra] = useState("");
+
+  // ====== ADDED (submit -> WhatsApp) ======
+  function handleWhatsAppSubmit(e) {
+    e.preventDefault();
+
+    const TRIAL_TAG = "TRIAL-BOOKING";
+    const WA_NUMBER = "6589510121"; // no + sign
+
+    const message = `🦍 Hairy Ape Swims – Enquiry
+
+🏷️ TAG: ${TRIAL_TAG}
+
+👨‍👩‍👧 Parent: ${parentName || "-"}
+📱 Mobile: ${mobile || "-"}
+✉️ Email: ${email || "-"}
+
+👶 Child: ${childName || "-"} (${childAge || "-"} yo)
+🏊 Experience: ${experience || "-"}
+
+📍 Area/Condo: ${area || "-"}
+⏰ Preferred Days/Timing: ${preferredTiming || "-"}
+
+📝 Notes: ${extra || "-"}
+
+Thank you! Please share available trial slots.`;
+
+    const url = `https://api.whatsapp.com/send?phone=${WA_NUMBER}&text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(url, "_blank", "noreferrer");
+  }
+
   return (
     <div className="bg-slate-900 min-h-screen">
       {/* Hero */}
@@ -36,7 +79,8 @@ export default function Contact() {
                 feel free to WhatsApp us directly.
               </p>
 
-              <form className="space-y-4">
+              {/* ====== EDITED: add onSubmit ====== */}
+              <form className="space-y-4" onSubmit={handleWhatsAppSubmit}>
                 {/* Parent details */}
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
@@ -47,6 +91,8 @@ export default function Contact() {
                       type="text"
                       placeholder="E.g. Tan Mei Ling"
                       className="bg-white"
+                      value={parentName}
+                      onChange={(e) => setParentName(e.target.value)}
                     />
                   </div>
                   <div>
@@ -57,6 +103,8 @@ export default function Contact() {
                       type="tel"
                       placeholder="E.g. +65 9XXX XXXX"
                       className="bg-white"
+                      value={mobile}
+                      onChange={(e) => setMobile(e.target.value)}
                     />
                   </div>
                 </div>
@@ -69,6 +117,8 @@ export default function Contact() {
                     type="email"
                     placeholder="for a copy of your enquiry"
                     className="bg-white"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
@@ -82,6 +132,8 @@ export default function Contact() {
                       type="text"
                       placeholder="E.g. Jayden"
                       className="bg-white"
+                      value={childName}
+                      onChange={(e) => setChildName(e.target.value)}
                     />
                   </div>
                   <div>
@@ -94,6 +146,8 @@ export default function Contact() {
                       max="18"
                       placeholder="E.g. 6"
                       className="bg-white"
+                      value={childAge}
+                      onChange={(e) => setChildAge(e.target.value)}
                     />
                   </div>
                 </div>
@@ -102,7 +156,11 @@ export default function Contact() {
                   <label className="block text-sm font-medium text-slate-700 mb-1">
                     Swimming Experience
                   </label>
-                  <select className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                  <select
+                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                    value={experience}
+                    onChange={(e) => setExperience(e.target.value)}
+                  >
                     <option value="">Select one</option>
                     <option>Totally new to water</option>
                     <option>Comfortable in shallow pool, can&apos;t swim yet</option>
@@ -120,6 +178,8 @@ export default function Contact() {
                     type="text"
                     placeholder="E.g. Punggol – Waterway Terraces"
                     className="bg-white"
+                    value={area}
+                    onChange={(e) => setArea(e.target.value)}
                   />
                 </div>
 
@@ -131,6 +191,8 @@ export default function Contact() {
                     type="text"
                     placeholder="E.g. Weekday evenings after 6pm, or Sat mornings"
                     className="bg-white"
+                    value={preferredTiming}
+                    onChange={(e) => setPreferredTiming(e.target.value)}
                   />
                 </div>
 
@@ -142,11 +204,17 @@ export default function Contact() {
                     rows={4}
                     placeholder="Share special needs, water confidence level, siblings joining, etc."
                     className="bg-white"
+                    value={extra}
+                    onChange={(e) => setExtra(e.target.value)}
                   />
                 </div>
 
                 <div className="pt-2">
-                  <Button className="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold rounded-full px-8 py-3 text-sm md:text-base">
+                  {/* ====== EDITED: button submits form ====== */}
+                  <Button
+                    type="submit"
+                    className="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold rounded-full px-8 py-3 text-sm md:text-base"
+                  >
                     Send Enquiry
                   </Button>
                   <p className="mt-2 text-xs text-slate-500">
@@ -173,7 +241,7 @@ export default function Contact() {
                     <Phone className="mt-0.5 h-5 w-5 text-cyan-300" />
                     <div>
                       <p className="font-semibold text-white">WhatsApp</p>
-                      <p className="text-sky-100">+65 XXXX XXXX</p>
+                      <p className="text-sky-100">+65 8951 0121</p>
                     </div>
                   </div>
 
@@ -215,7 +283,7 @@ export default function Contact() {
                               bg-emerald-500 hover:bg-emerald-600 text-white shadow-md"
                   >
                     <a
-                      href="https://wa.me/6589510121"  // put your real WhatsApp number here
+                      href="https://api.whatsapp.com/send?phone=6589510121&text=Hi%20Harry,%20I%20would%20like%20to%20enquire%20more%20about%20your%20swimming%20programmes%20available!"
                       target="_blank"
                       rel="noreferrer"
                     >
