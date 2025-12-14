@@ -4,7 +4,7 @@ import React from "react";
 export default function Programmes() {
   const programmes = [
     {
-      title: "ApeStart™ Water Confidence (1.5–4 years)",
+      title: "ApeStart™ Water Confidence (0.5–4 years)",
       level: "Beginners • Pre-school",
       desc: "Gentle, play-based lessons to help little ones feel safe and happy in the water. We focus on bubbles, floating, kicking and basic water safety.",
       points: [
