@@ -4,7 +4,7 @@ import React from "react";
 export default function Programmes() {
   const programmes = [
     {
-      title: "Water Confidence (1.5–4 years)",
+      title: "ApeStart™ Water Confidence (1.5–4 years)",
       level: "Beginners • Pre-school",
       desc: "Gentle, play-based lessons to help little ones feel safe and happy in the water. We focus on bubbles, floating, kicking and basic water safety.",
       points: [
@@ -14,13 +14,25 @@ export default function Programmes() {
       ],
     },
     {
-      title: "Learn to Swim (5–10 years)",
+      title: "ApeCore™ Learn-to-Swim (5–10 years)",
       level: "Beginner to Intermediate",
       desc: "Step-by-step stroke development with clear levels so kids can see their progress. Builds strong foundations for freestyle and backstroke.",
       points: [
         "Aligned with SwimSafer stages",
         "Breathing, kicking and body position",
         "Confidence in deep water over time",
+      ],
+    },
+        {
+      title: "Swimsafer (6–12 years)",
+      level: "Beginner to Intermediate",
+      desc: "A structured national swim programme aligned with Sport Singapore’s SwimSafer® standards. Focuses on water safety, survival skills, and progressive stroke development to build confident and competent swimmers.",
+      points: [
+        "Aligned with official SwimSafer® Stage 1–6 syllabus",
+        "Water safety, survival skills, and self-rescue techniques",
+        "Progressive freestyle and backstroke development",
+        "Confidence in deep water and emergency scenarios",
+        "Assessment-based progression with certification",
       ],
     },
     {
