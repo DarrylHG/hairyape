@@ -14,6 +14,7 @@ import FAQ from "./pages/FAQ.jsx";
 import Contact from "./pages/Contact.jsx";
 import CoachPortal from "./pages/CoachPortal";
 import Terms from "./pages/Terms.jsx";
+import Reviews from "./pages/Reviews.jsx";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/coach-portal" element={<CoachPortal />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/Reviews" element={<Reviews />} />
         </Routes>
       </Layout>
     </>

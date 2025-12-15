@@ -12,6 +12,7 @@ function Layout({ children }) {
     { to: "/Programmes", label: "Programmes" },
     { to: "/Roadmap", label: "Roadmap" },
     { to: "/Rates", label: "Rates" },
+    { to: "/Reviews", label: "Reviews" },
     { to: "/FAQ", label: "FAQ" },
     { to: "/Contact", label: "Contact" },
   ];
