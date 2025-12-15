@@ -113,7 +113,7 @@ export default function Programmes() {
 
                 {/* CTA */}
                 <Link to="/Rates" className="mt-auto">
-                  <Button className="w-full rounded-full bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2">
+                  <Button className="self-start rounded-lg bg-sky-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-sky-700">
                     Check Rates
                   </Button>
                 </Link>
