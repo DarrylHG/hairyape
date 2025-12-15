@@ -1,5 +1,7 @@
 // src/pages/Programmes.jsx
 import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 export default function Programmes() {
   const programmes = [
@@ -23,7 +25,7 @@ export default function Programmes() {
         "Confidence in deep water over time",
       ],
     },
-        {
+    {
       title: "Swimsafer (6–12 years)",
       level: "Beginner to Advanced",
       desc: "A structured national swim programme aligned with Sport Singapore’s SwimSafer® standards. Focuses on water safety, survival skills, and progressive stroke development to build confident and competent swimmers.",
@@ -100,13 +102,23 @@ export default function Programmes() {
                     {p.level}
                   </p>
                 </div>
+
                 <p className="text-slate-700 mb-4">{p.desc}</p>
-                <ul className="space-y-2 text-slate-600 mb-4">
+
+                <ul className="space-y-2 text-slate-600 mb-6">
                   {p.points.map((pt, idx) => (
                     <li key={idx}>• {pt}</li>
                   ))}
                 </ul>
-                <div className="mt-auto text-sm text-slate-500">
+
+                {/* CTA */}
+                <Link to="/Rates" className="mt-auto">
+                  <Button className="w-full rounded-full bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2">
+                    Check Rates
+                  </Button>
+                </Link>
+
+                <div className="mt-3 text-sm text-slate-500 text-center">
                   * Exact grouping and timing may vary by location.
                 </div>
               </div>
