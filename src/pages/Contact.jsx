@@ -101,7 +101,7 @@ Thank you! Please share available trial slots.`;
                     </label>
                     <Input
                       type="tel"
-                      placeholder="E.g. +65 9XXX XXXX"
+                      placeholder="E.g. +65 XXXX XXXX"
                       className="bg-white"
                       value={mobile}
                       onChange={(e) => setMobile(e.target.value)}
