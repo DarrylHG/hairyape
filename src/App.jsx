@@ -3,6 +3,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Layout from "./layout.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
@@ -14,10 +15,12 @@ import Contact from "./pages/Contact.jsx";
 import CoachPortal from "./pages/CoachPortal";
 import Terms from "./pages/Terms.jsx";
 
-
 function App() {
   return (
     <Layout>
+      {/* MUST be above Routes */}
+      <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
