@@ -6,14 +6,14 @@ export default function Reviews() {
   const reviews = [
     {
       name: "Ms Tan",
-      child: "6yo (Beginner)",
+      child: "6yo (ApeCore™ Learn-to-Swim)",
       location: "Punggol",
       text:
         "Super patient and encouraging. My child used to be scared of water, but after a few lessons, can float calmly and kick forward with confidence. Very steady progress.",
     },
     {
       name: "Aileen",
-      child: "4yo (Water Confidence)",
+      child: "4yo (ApeStart™ Water Confidence)",
       location: "Pasir Ris",
       text:
         "Love the play-based approach. My girl actually looks forward to lessons and is much calmer in the pool now.",
@@ -27,7 +27,7 @@ export default function Reviews() {
     },
     {
       name: "Mdm Chua",
-      child: "5yo (Beginner)",
+      child: "5yo (ApeCore™ Learn-to-Swim)",
       location: "Hougang",
       text:
         "My son used to cling to the wall and refuse to put his face in the water. After a few lessons, he can blow bubbles and float independently.",
@@ -41,7 +41,7 @@ export default function Reviews() {
     },
     {
       name: "Mrs Wong",
-      child: "7yo (Beginner)",
+      child: "7yo (ApeCore™ Learn-to-Swim)",
       location: "Serangoon",
       text:
         "Very encouraging teaching style. My child used to cry before lessons, now enters the pool happily.",
@@ -55,14 +55,14 @@ export default function Reviews() {
     },
     {
       name: "Sharon",
-      child: "6yo (Water Confidence)",
+      child: "6yo (ApeCore™ Learn-to-Swim)",
       location: "Punggol",
       text:
         "Clear communication and regular updates. As parents, it helps us understand what our child is learning each week.",
     },
     {
       name: "Mdm Lee",
-      child: "5yo (Beginner)",
+      child: "5yo (ApeCore™ Learn-to-Swim)",
       location: "Yishun",
       text:
         "Patient and calm approach. My daughter gained confidence much faster than expected.",
@@ -76,7 +76,7 @@ export default function Reviews() {
     },
     {
       name: "Felicia",
-      child: "4yo (Water Confidence)",
+      child: "4yo (ApeStart™ Water Confidence)",
       location: "Sengkang",
       text:
         "Play-based but still structured. My child is more relaxed in water now.",
@@ -90,14 +90,14 @@ export default function Reviews() {
     },
     {
       name: "Rachel",
-      child: "7yo (Beginner)",
+      child: "7yo (Swimsafer)",
       location: "Bukit Panjang",
       text:
         "Coaching style builds confidence gradually. My child is no longer afraid of submersion.",
     },
     {
       name: "Mdm Ng",
-      child: "6yo (Water Confidence)",
+      child: "6yo (ApeCore™ Learn-to-Swim)",
       location: "Ang Mo Kio",
       text:
         "Very reassuring for parents. Lessons feel safe and well-planned.",
@@ -125,21 +125,21 @@ export default function Reviews() {
     },
     {
       name: "Daniel",
-      child: "8yo (SwimSafer)",
+      child: "8yo (ApeCore™ Learn-to-Swim)",
       location: "Clementi",
       text:
         "Structured lessons with clear progression. My child enjoys the routine.",
     },
     {
       name: "Mdm Ho",
-      child: "6yo (Water Confidence)",
+      child: "6yo (ApeCore™ Learn-to-Swim)",
       location: "Bukit Batok",
       text:
         "We appreciate the patient approach. Progress feels natural, not forced.",
     },
     {
       name: "Mr Yeo",
-      child: "7yo (Beginner)",
+      child: "7yo (ApeCore™ Learn-to-Swim)",
       location: "Marine Parade",
       text:
         "Lessons helped build both skills and confidence. Very satisfied with the experience.",
