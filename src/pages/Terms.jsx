@@ -23,87 +23,93 @@ function Terms() {
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="max-w-3xl mx-auto bg-sky-50/70 border border-sky-100 rounded-3xl p-6 md:p-10 shadow-sm">
             <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-3">
-              Terms &amp; Conditions for Swimming Lessons
+              Hairy Ape Swims – Terms &amp; Conditions
             </h2>
 
             <div className="text-slate-700 space-y-6 text-sm md:text-base leading-relaxed">
               <div>
-                <p className="font-semibold text-slate-800 mb-2">Each lesson package includes:</p>
+                <p className="font-semibold text-slate-800 mb-2">
+                  What’s included in every lesson package
+                </p>
                 <ul className="space-y-1">
-                  <li>• 4x Lesson credits</li>
-                  <li>• 2x Bad weather cancellations</li>
-                  <li>• 2x Medical Certificate cancellations</li>
-                  <li>• 1x Discretionary cancellation</li>
+                  <li>• 4 lesson credits</li>
+                  <li>• 2 bad weather cancellations</li>
+                  <li>• 2 medical certificate (MC) cancellations</li>
+                  <li>• 1 discretionary cancellation</li>
                 </ul>
               </div>
 
               <p>
-                Dear swimmers and parents, we seek your kind understanding that cancelled lessons
-                equate to a loss of income for coaches. Our lesson packages aim to strike a balance
-                between giving our clients a satisfying swimming experience and taking care of our
-                coaches’ interest. Thank you so much respecting and adhering to the provisions
-                listed in our lesson packages.
+                At Hairy Ape Swims, we care about both our swimmers and our coaches. When a lesson is
+                cancelled, it affects a coach’s schedule and income. These terms are here to keep
+                things fair for everyone, while still giving families flexibility when life happens.
+                Thank you for supporting our coaches and respecting the guidelines below.
               </p>
 
               <div>
-                <p className="font-semibold text-slate-800 mb-2">Wet Weather Plan</p>
+                <p className="font-semibold text-slate-800 mb-2">🦍 Wet Weather Plan</p>
                 <p>
-                  In cases of light rain, swim lessons will carry on as per normal. In the event of
-                  heavy rain or lightning alert, our coaches are trained to conduct dryland training
-                  which consists of fitness &amp; conditioning work and/or theory modules to help swimmers
-                  understand the mechanics of swimming better. The level of difficulty for these dryland
-                  curriculums would be tailored according to the swimmers’ age group.
+                  Swimming is an outdoor sport, and weather can be unpredictable.
                 </p>
                 <p className="mt-2">
-                  Having said so, our lesson packages do include 2x Bad weather cancellations for your
-                  utilization should you prefer to skip the dryland curriculums in the event of heavy rain
-                  or lightning alert. Bad weather cancellations can only be used within 1.5 hours before
+                  • Light rain: Lessons will continue as planned.
+                  <br />
+                  • Heavy rain or lightning alert: Coaches may switch to dryland training. This can
+                  include age-appropriate fitness work and simple theory modules to help swimmers
+                  understand technique and mechanics better.
+                </p>
+                <p className="mt-2">
+                  If you prefer to skip dryland training, each package includes 2 bad weather
+                  cancellations. Bad weather cancellations can only be used within 1.5 hours before
                   lesson time.
                 </p>
                 <p className="mt-2">
-                  We seek your kind understanding that after the 2x Bad weather cancellations have been
-                  used up, further cancellations in place of dryland curriculums would incur charges equal
-                  to 50% of a single lesson’s fees. Hence, we strongly advise that you save the Bad weather
-                  cancellation in the event of heavy rain instead of utilizing it during drizzling conditions.
-                  We thank you for your most gracious cooperation.
+                  After the 2 bad weather cancellations are fully used, further cancellations in place
+                  of dryland training will be charged at 50% of the lesson fee. We strongly encourage
+                  families to save bad weather cancellations for genuinely unsafe conditions rather
+                  than light drizzle. Thank you for helping us keep lessons safe, consistent and fair.
                 </p>
               </div>
 
               <div>
-                <p className="font-semibold text-slate-800 mb-2">Feeling Unwell or Unfit</p>
+                <p className="font-semibold text-slate-800 mb-2">🤒 Feeling Unwell or Injured</p>
                 <p>
-                  In cases should the swimmer be feeling unwell or unable to attend lesson due to injuries,
-                  our lesson packages do include 2x Medical Certificate cancellations for your utilization in
-                  conjunction with the submission of the swimmer’s Medical Certificate issued by a registered
-                  General Practitioner in Singapore.
+                  We understand swimmers may occasionally be unwell or injured. Each package includes
+                  2 MC cancellations, which may be used upon submission of a valid medical certificate
+                  issued by a registered General Practitioner in Singapore.
                 </p>
                 <p className="mt-2">
-                  We seek your kind understanding that after the 2x Medical Certificate cancellations have been
-                  used up, further cancellations of lessons would incur charges equal to 50% of a single lesson’s
-                  fees. We thank you for your most gracious cooperation.
+                  After the 2 MC cancellations have been used, any further cancellations will be
+                  charged at 50% of the lesson fee. We appreciate your understanding as this helps
+                  our coaches plan their time responsibly.
                 </p>
               </div>
 
               <div>
-                <p className="font-semibold text-slate-800 mb-2">Discretionary Cancellation</p>
+                <p className="font-semibold text-slate-800 mb-2">
+                  ⏰ Discretionary Cancellation (No Questions Asked)
+                </p>
                 <p>
-                  Our lesson packages also include a 1x Discretionary cancellation for your utilization at your
-                  sole and full discretion with no questions asked. We only ask that should you wish to utilize
-                  this Discretionary cancellation, kindly inform us at least 4 hours before lesson time to allow
-                  our coaches to plan their schedules accordingly.
+                  Each package includes 1 discretionary cancellation, which can be used for any reason,
+                  no questions asked. To help our coaches manage their schedules, please inform us at
+                  least 4 hours before lesson time when using this cancellation.
                 </p>
                 <p className="mt-2">
-                  All our credits are strictly non refundable. We thank you for your most gracious cooperation.
+                  All lesson credits are strictly non-refundable. Thank you for your cooperation.
                 </p>
               </div>
 
               <div>
-                <p className="font-semibold text-slate-800 mb-2">Group Class Discretionary Cancellation</p>
+                <p className="font-semibold text-slate-800 mb-2">
+                  👨‍👩‍👧 Group Lesson Cancellation Policy
+                </p>
                 <p>
-                  Please take note that for group lessons, ALL swimmers/parents of swimmers must unanimously agree
-                  to any utilization of cancellations. Otherwise, lessons will have to carry on and charged as per normal.
-                  We thank you for your kind understanding and most gracious cooperation. Do take note all credits paid are
-                  strictly non refundable.
+                  For group lessons, cancellations must be unanimously agreed upon by all swimmers or
+                  parents in the group. If unanimous agreement is not reached, the lesson will proceed
+                  as scheduled and be charged accordingly.
+                </p>
+                <p className="mt-2">
+                  All payments and lesson credits are strictly non-refundable.
                 </p>
               </div>
 
