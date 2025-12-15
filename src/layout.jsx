@@ -148,6 +148,24 @@ function Layout({ children }) {
         )}
       </header>
 
+      {/* MOVING BANNER */}
+      <div className="bg-cyan-600 text-white overflow-hidden">
+        <div className="flex w-max animate-marquee">
+          <NavLink
+            to="/Contact"
+            className="block whitespace-nowrap py-2 text-sm md:text-base font-semibold hover:underline px-6"
+          >
+            🦍 SIGN UP WITH HARRY THE HAIRY APE NOW TO GET A COMPLIMENTARY STARTER KIT FOR YOUR CHILD! 🎒🏊‍♂️
+          </NavLink>
+          <NavLink
+            to="/Contact"
+            className="block whitespace-nowrap py-2 text-sm md:text-base font-semibold hover:underline px-6"
+          >
+            🦍 SIGN UP WITH HARRY THE HAIRY APE NOW TO GET A COMPLIMENTARY STARTER KIT FOR YOUR CHILD! 🎒🏊‍♂️
+          </NavLink>
+        </div>
+      </div>
+
       {/* PAGE CONTENT */}
       <main className="flex-1">{children}</main>
 
