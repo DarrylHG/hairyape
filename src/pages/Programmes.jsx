@@ -14,7 +14,7 @@ export default function Programmes() {
       ],
     },
     {
-      title: "ApeCore™ Learn-to-Swim (5–10 years)",
+      title: "ApeCore™ Learn-to-Swim (5–7 years)",
       level: "Beginner to Intermediate",
       desc: "Step-by-step stroke development with clear levels so kids can see their progress. Builds strong foundations for freestyle and backstroke.",
       points: [
@@ -25,7 +25,7 @@ export default function Programmes() {
     },
         {
       title: "Swimsafer (6–12 years)",
-      level: "Beginner to Intermediate",
+      level: "Beginner to Advanced",
       desc: "A structured national swim programme aligned with Sport Singapore’s SwimSafer® standards. Focuses on water safety, survival skills, and progressive stroke development to build confident and competent swimmers.",
       points: [
         "Aligned with official SwimSafer® Stage 1–6 syllabus",

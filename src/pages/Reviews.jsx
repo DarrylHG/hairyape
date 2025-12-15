@@ -152,10 +152,10 @@ export default function Reviews() {
       <section className="bg-sky-50 text-slate-900">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <h1 className="text-3xl md:text-4xl font-extrabold mb-3">
-            Parent Reviews & Results
+            Reviews & Results
           </h1>
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl">
-            Real feedback from families learning with Hairy Ape Swims.
+            Feedback from families learning with Hairy Ape Swims.
           </p>
         </div>
       </section>
