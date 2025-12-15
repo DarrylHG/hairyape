@@ -17,23 +17,23 @@ import Terms from "./pages/Terms.jsx";
 
 function App() {
   return (
-    <Layout>
-      {/* MUST be above Routes */}
+    <>
       <ScrollToTop />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Home" element={<Home />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Programmes" element={<Programmes />} />
-        <Route path="/Roadmap" element={<Roadmap />} />
-        <Route path="/Rates" element={<Rates />} />
-        <Route path="/FAQ" element={<FAQ />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path="/coach-portal" element={<CoachPortal />} />
-        <Route path="/terms" element={<Terms />} />
-      </Routes>
-    </Layout>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Programmes" element={<Programmes />} />
+          <Route path="/Roadmap" element={<Roadmap />} />
+          <Route path="/Rates" element={<Rates />} />
+          <Route path="/FAQ" element={<FAQ />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/coach-portal" element={<CoachPortal />} />
+          <Route path="/terms" element={<Terms />} />
+        </Routes>
+      </Layout>
+    </>
   );
 }
 
