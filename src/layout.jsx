@@ -170,7 +170,7 @@ function Layout({ children }) {
       <main className="flex-1">{children}</main>
 
       <footer className="bg-sky-950 border-t border-sky-800 py-4 text-center text-xs text-sky-200">
-        © {new Date().getFullYear()} Hairy Ape Swims. All rights reserved.
+        © {new Date().getFullYear()} Hairy Ape Swims Pte Ltd. All rights reserved.
       </footer>
     </div>
   );
