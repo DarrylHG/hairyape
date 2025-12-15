@@ -12,6 +12,7 @@ import Rates from "./pages/Rates.jsx";
 import FAQ from "./pages/FAQ.jsx";
 import Contact from "./pages/Contact.jsx";
 import CoachPortal from "./pages/CoachPortal";
+import Terms from "./pages/Terms";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/FAQ" element={<FAQ />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/coach-portal" element={<CoachPortal />} />
+        <Route path="/terms" element={<Terms />} />
       </Routes>
     </Layout>
   );
