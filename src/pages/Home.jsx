@@ -28,7 +28,7 @@ export default function Home() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-300">Fun for Life!</span>
             </h1>
             <p className="text-lg md:text-xl text-cyan-100 mb-8 leading-relaxed">
-              Singapore&apos;s most trusted swim school. We teach safe swimming techniques in a fun, family-oriented environment at ActiveSG and Condo pools near you.
+              Singapore&apos;s most trusted swim school. We teach safe swimming techniques in a fun, family-oriented environment near you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to={createPageUrl('Contact')}>
