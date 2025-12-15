@@ -3,7 +3,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Layout from "./layout.jsx";
-import ScrollToTop from "./components/ScrollToTop.jsx";
+import ScrollToTop from "./components/ui/ScrollToTop.jsx";
 
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
