@@ -16,7 +16,7 @@ export default function Programmes() {
       ],
     },
     {
-      title: "ApeCore™ Learn-to-Swim (5–7 years)",
+      title: "ApeCore™ Learn-to-Swim (4–7 years)",
       level: "Beginner to Intermediate",
       desc: "Step-by-step stroke development with clear levels so kids can see their progress. Builds strong foundations for freestyle and backstroke.",
       points: [
@@ -111,12 +111,14 @@ export default function Programmes() {
                   ))}
                 </ul>
 
-                {/* CTA */}
-                <Link to="/Rates" className="mt-auto">
-                  <Button className="self-start rounded-lg bg-sky-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-sky-700">
-                    Check Rates
-                  </Button>
-                </Link>
+                {/* CTA (right-aligned, small like Enquire) */}
+                <div className="mt-auto flex justify-end">
+                  <Link to="/Rates">
+                    <Button className="rounded-lg bg-sky-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-sky-700">
+                      Check Rates
+                    </Button>
+                  </Link>
+                </div>
 
                 <div className="mt-3 text-sm text-slate-500 text-center">
                   * Exact grouping and timing may vary by location.
