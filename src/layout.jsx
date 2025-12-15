@@ -155,13 +155,13 @@ function Layout({ children }) {
             to="/Contact"
             className="block whitespace-nowrap py-2 text-sm md:text-base font-semibold hover:underline px-6"
           >
-            🦍 SIGN UP WITH HARRY THE HAIRY APE NOW TO GET A COMPLIMENTARY STARTER KIT FOR YOUR CHILD! 🎒🏊‍♂️
+            🦍 SIGN UP WITH HARRY THE HAIRY APE NOW TO GET A COMPLIMENTARY STARTER KIT FOR YOUR CHILD! 🎒🏊‍♂️ LIMITED TIME ONLY!!
           </NavLink>
           <NavLink
             to="/Contact"
             className="block whitespace-nowrap py-2 text-sm md:text-base font-semibold hover:underline px-6"
           >
-            🦍 SIGN UP WITH HARRY THE HAIRY APE NOW TO GET A COMPLIMENTARY STARTER KIT FOR YOUR CHILD! 🎒🏊‍♂️
+            🦍 SIGN UP WITH HARRY THE HAIRY APE NOW TO GET A COMPLIMENTARY STARTER KIT FOR YOUR CHILD! 🎒🏊‍♂️ LIMITED TIME ONLY!!
           </NavLink>
         </div>
       </div>
