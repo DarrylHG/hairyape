@@ -12,7 +12,7 @@ import Rates from "./pages/Rates.jsx";
 import FAQ from "./pages/FAQ.jsx";
 import Contact from "./pages/Contact.jsx";
 import CoachPortal from "./pages/CoachPortal";
-import Terms from "./pages/Terms";
+import Terms from "./pages/Terms.jsx";
 
 
 function App() {
