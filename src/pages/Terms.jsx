@@ -113,6 +113,16 @@ function Terms() {
                 </p>
               </div>
 
+              <div>
+                <p className="font-semibold text-slate-800 mb-2">Thank you for your understanding
+                </p>
+                <p>
+                 Thank you for being part of the Hairy Ape Swims family 🦍
+                 Your understanding helps us create a positive, respectful and sustainable environment 
+                 for our swimmers and coaches alike.
+                </p>
+              </div>
+
               <div className="pt-2">
                 <Link to="/FAQ">
                   <Button className="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold rounded-full px-6 py-3 text-sm md:text-base">
