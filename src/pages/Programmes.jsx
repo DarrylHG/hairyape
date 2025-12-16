@@ -92,7 +92,7 @@ export default function Programmes() {
       </section>
 
       {/* Programmes grid */}
-      <section className="bg-white" id="certificates">
+      <section className="bg-white">
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
             {programmes.map((p, i) => (
@@ -145,7 +145,7 @@ export default function Programmes() {
       </section>
 
       {/* ✅ Certificates (added all the way below) */}
-      <section className="bg-white">
+      <section className="bg-white" id="certificates">
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3 text-center">
