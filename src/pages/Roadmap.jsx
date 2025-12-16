@@ -4,6 +4,12 @@ import { createPageUrl } from '../utils';
 import { Button } from "@/components/ui/button";
 import { User, Star, Anchor, Wind, Zap, Trophy } from 'lucide-react';
 
+// ✅ Add these 2 images into:
+// src/assets/certificates/water-explorer-award.png
+// src/assets/certificates/apecore-ready-award.png
+import WaterExplorerImg from "@/assets/certificates/water-explorer-award.png";
+import ApeCoreReadyImg from "@/assets/certificates/apecore-ready-award.png";
+
 export default function Roadmap() {
   const stages = [
     {
@@ -73,7 +79,7 @@ export default function Roadmap() {
           <div className="space-y-12">
             {stages.map((stage, index) => (
               <div key={stage.id} className={`flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} gap-8 relative`}>
-                
+
                 {/* Icon Center Marker */}
                 <div className={`absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full border-4 border-white shadow-lg ${stage.color} hidden md:flex items-center justify-center text-white z-10`}>
                   <span className="font-bold">{stage.id}</span>
@@ -100,9 +106,43 @@ export default function Roadmap() {
                         ))}
                       </ul>
                     </div>
+
+                    {/* ✅ Certificate for Stage 1 */}
+                    {stage.id === 1 && (
+                      <Link to="/Programmes#certificates" className="block mt-4">
+                        <div className="bg-sky-50 border border-sky-100 rounded-xl p-4 text-center hover:shadow-sm transition">
+                          <p className="text-sm font-bold text-slate-800 mb-2 hover:underline">
+                            🎖 Water Explorer Award
+                          </p>
+                          <img
+                            src={WaterExplorerImg}
+                            alt="Water Explorer Award"
+                            className="mx-auto max-w-[180px] rounded-lg shadow-sm"
+                            loading="lazy"
+                          />
+                        </div>
+                      </Link>
+                    )}
+
+                    {/* ✅ Certificate for Stage 2 */}
+                    {stage.id === 2 && (
+                      <Link to="/Programmes#certificates" className="block mt-4">
+                        <div className="bg-sky-50 border border-sky-100 rounded-xl p-4 text-center hover:shadow-sm transition">
+                          <p className="text-sm font-bold text-slate-800 mb-2 hover:underline">
+                            🎖 ApeCore Ready Award
+                          </p>
+                          <img
+                            src={ApeCoreReadyImg}
+                            alt="ApeCore Ready Award"
+                            className="mx-auto max-w-[180px] rounded-lg shadow-sm"
+                            loading="lazy"
+                          />
+                        </div>
+                      </Link>
+                    )}
                   </div>
                 </div>
-                
+
                 {/* Empty Space for the other side */}
                 <div className="w-full md:w-1/2 hidden md:block"></div>
               </div>
