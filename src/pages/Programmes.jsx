@@ -92,7 +92,7 @@ export default function Programmes() {
       </section>
 
       {/* Programmes grid */}
-      <section className="bg-white">
+      <section className="bg-white" id="certificates">
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
             {programmes.map((p, i) => (
