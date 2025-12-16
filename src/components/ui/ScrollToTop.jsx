@@ -1,18 +1,21 @@
-// src/components/ui/ScrollToTop.jsx
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // scroll the actual scrolling element
-    const el = document.scrollingElement || document.documentElement;
-    el.scrollTo(0, 0);
+    if (hash) {
+      // wait for the page to render, then scroll to the anchor
+      requestAnimationFrame(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
+      });
+      return;
+    }
 
-    // fallback
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [pathname, hash]);
 
   return null;
 }
