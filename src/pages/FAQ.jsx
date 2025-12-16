@@ -146,6 +146,23 @@ export default function FAQ() {
                     will advise on the best fit.
                   </AccordionContent>
                 </AccordionItem>
+
+                {/* ===== ADDED: Terms link ===== */}
+                <AccordionItem
+                  value="terms"
+                  className="border border-sky-100 rounded-2xl px-4"
+                >
+                  <AccordionTrigger className="text-left text-base md:text-lg font-semibold text-slate-800">
+                    Where can I read your Terms &amp; Conditions?
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-4 text-sm md:text-base text-slate-700">
+                    You can view our full Terms &amp; Conditions here:{" "}
+                    <Link to="/terms" className="text-cyan-700 font-semibold underline">
+                      Terms &amp; Conditions
+                    </Link>
+                    .
+                  </AccordionContent>
+                </AccordionItem>
               </Accordion>
             </div>
 
