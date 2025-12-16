@@ -3,6 +3,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
+// ✅ Add these 2 images into:
+// src/assets/certificates/water-explorer-award.png
+// src/assets/certificates/apecore-ready-award.png
+import WaterExplorerImg from "@/assets/certificates/water-explorer-award.png";
+import ApeCoreReadyImg from "@/assets/certificates/apecore-ready-award.png";
+
 export default function Programmes() {
   const programmes = [
     {
@@ -111,14 +117,12 @@ export default function Programmes() {
                   ))}
                 </ul>
 
-                {/* CTA (right-aligned, small like Enquire) */}
-                <div className="mt-auto flex justify-end">
-                  <Link to="/Rates">
-                    <Button className="rounded-lg bg-sky-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-sky-700">
-                      Check Rates
-                    </Button>
-                  </Link>
-                </div>
+                {/* CTA */}
+                <Link to="/Rates" className="mt-auto flex justify-end">
+                  <Button className="rounded-lg bg-sky-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-sky-700">
+                    Check Rates
+                  </Button>
+                </Link>
 
                 <div className="mt-3 text-sm text-slate-500 text-center">
                   * Exact grouping and timing may vary by location.
@@ -137,6 +141,100 @@ export default function Programmes() {
             current water confidence when you book a trial, and we’ll recommend
             the best starting level for them.
           </p>
+        </div>
+      </section>
+
+      {/* ✅ Certificates (added all the way below) */}
+      <section className="bg-white">
+        <div className="container mx-auto px-4 py-12 md:py-16">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3 text-center">
+              Achievement Certificates
+            </h2>
+            <p className="text-slate-600 text-center max-w-3xl mx-auto mb-10">
+              We celebrate confidence milestones. These awards recognise swimmers who are ready to
+              progress into more structured learn-to-swim pathways.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
+              {/* Water Explorer Award */}
+              <div className="bg-sky-50 rounded-3xl p-6 md:p-8 shadow-sm border border-sky-100">
+                <h3 className="text-xl md:text-2xl font-bold text-slate-800 mb-3 text-center">
+                  Water Explorer Award
+                </h3>
+
+                <img
+                  src={WaterExplorerImg}
+                  alt="Water Explorer Award Certificate"
+                  className="w-full max-w-sm mx-auto rounded-2xl border border-sky-100 shadow-sm"
+                  loading="lazy"
+                />
+
+                <div className="mt-6 text-slate-700">
+                  <p className="font-semibold text-slate-800 mb-2">Purpose</p>
+                  <p className="mb-5">
+                    Recognises swimmers who have developed basic water confidence, safety awareness,
+                    and independence, and are ready to progress into structured learn-to-swim programmes.
+                  </p>
+
+                  <p className="font-semibold text-slate-800 mb-2">Award Criteria</p>
+                  <ul className="space-y-2 text-slate-700 mb-5">
+                    <li>• Blow bubbles and hold breath with face in water for at least 5 seconds</li>
+                    <li>• Front float and back float independently for at least 5 seconds each</li>
+                    <li>• Streamline rocket kicks for at least 2 metres independently and comfortably</li>
+                  </ul>
+
+                  <p className="font-semibold text-slate-800 mb-2">What it signifies</p>
+                  <ul className="space-y-2 text-slate-700">
+                    <li>• Strong foundation in water confidence</li>
+                    <li>• Readiness to move into ApeCore™ Learn-to-Swim or SwimSafer®</li>
+                    <li>• Confidence without relying on constant physical support</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* ApeCore Ready Award */}
+              <div className="bg-sky-50 rounded-3xl p-6 md:p-8 shadow-sm border border-sky-100">
+                <h3 className="text-xl md:text-2xl font-bold text-slate-800 mb-3 text-center">
+                  ApeCore Ready Award
+                </h3>
+
+                <img
+                  src={ApeCoreReadyImg}
+                  alt="ApeCore Ready Award Certificate"
+                  className="w-full max-w-sm mx-auto rounded-2xl border border-sky-100 shadow-sm"
+                  loading="lazy"
+                />
+
+                <div className="mt-6 text-slate-700">
+                  <p className="font-semibold text-slate-800 mb-2">Purpose</p>
+                  <p className="mb-5">
+                    Recognises swimmers who are ready to transition into SwimSafer 2.0 Stage 1, with
+                    stronger independence, confidence, and basic movement control in the water.
+                  </p>
+
+                  <p className="font-semibold text-slate-800 mb-2">What it signifies</p>
+                  <ul className="space-y-2 text-slate-700">
+                    <li>• Ready for structured progression and assessment-based learning</li>
+                    <li>• Improved independence and confidence in the pool environment</li>
+                    <li>• Prepared to start SwimSafer 2.0 Stage 1</li>
+                  </ul>
+
+                  <p className="mt-5 text-sm text-slate-500">
+                    * Exact award checks may vary depending on starting level, attendance and practice.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 text-center">
+              <Link to="/Contact">
+                <Button className="rounded-full bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-3 shadow">
+                  Book a Trial
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>
