@@ -107,8 +107,8 @@ export default function Roadmap() {
                       </ul>
                     </div>
 
-                    {/* ✅ Certificate for Stage 1 */}
-                    {stage.id === 1 && (
+                    {/* ✅ Certificate for Stage 2 */}
+                    {stage.id === 2 && (
                       <Link to="/Programmes#certificates" className="block mt-4">
                         <div className="bg-sky-50 border border-sky-100 rounded-xl p-4 text-center hover:shadow-sm transition">
                           <p className="text-sm font-bold text-slate-800 mb-2 hover:underline">
@@ -124,8 +124,8 @@ export default function Roadmap() {
                       </Link>
                     )}
 
-                    {/* ✅ Certificate for Stage 2 */}
-                    {stage.id === 2 && (
+                    {/* ✅ Certificate for Stage 3 */}
+                    {stage.id === 3 && (
                       <Link to="/Programmes#certificates" className="block mt-4">
                         <div className="bg-sky-50 border border-sky-100 rounded-xl p-4 text-center hover:shadow-sm transition">
                           <p className="text-sm font-bold text-slate-800 mb-2 hover:underline">
