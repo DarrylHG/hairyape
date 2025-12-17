@@ -172,7 +172,7 @@ export default function FAQ() {
                   What age should my child start swimming lessons?
                 </AccordionTrigger>
                 <AccordionContent className="pb-4 text-sm md:text-base text-slate-700">
-                  Kids can be introduced to water early through gentle water-orientation, but most children
+                  Kids from 6 months old can be introduced to water early through gentle water-orientation, but most children
                   start structured lessons around 3 to 4 years old, when they can follow simple instructions
                   and coordinate basic movements better. Starting earlier usually helps children feel more
                   comfortable in water, and it builds water-safety awareness from young.
