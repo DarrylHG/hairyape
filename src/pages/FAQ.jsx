@@ -153,7 +153,7 @@ export default function FAQ() {
                   className="border border-sky-100 rounded-2xl px-4"
                 >
                   <AccordionTrigger className="text-left text-base md:text-lg font-semibold text-slate-800">
-                    Where can I read your Terms &amp; Conditions?
+                    Where can I read your Terms &amp; Conditions about lessons?
                   </AccordionTrigger>
                   <AccordionContent className="pb-4 text-sm md:text-base text-slate-700">
                     You can view our full Terms &amp; Conditions here:{" "}
@@ -163,6 +163,80 @@ export default function FAQ() {
                     .
                   </AccordionContent>
                 </AccordionItem>
+
+                <AccordionItem
+                value="starting-age"
+                className="border border-sky-100 rounded-2xl px-4"
+              >
+                <AccordionTrigger className="text-left text-base md:text-lg font-semibold text-slate-800">
+                  What age should my child start swimming lessons?
+                </AccordionTrigger>
+                <AccordionContent className="pb-4 text-sm md:text-base text-slate-700">
+                  Kids can be introduced to water early through gentle water-orientation, but most children
+                  start structured lessons around 3 to 4 years old, when they can follow simple instructions
+                  and coordinate basic movements better. Starting earlier usually helps children feel more
+                  comfortable in water, and it builds water-safety awareness from young.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem
+                value="what-to-look-for"
+                className="border border-sky-100 rounded-2xl px-4"
+              >
+                <AccordionTrigger className="text-left text-base md:text-lg font-semibold text-slate-800">
+                  What should I look for in a good swimming class for children?
+                </AccordionTrigger>
+                <AccordionContent className="pb-4 text-sm md:text-base text-slate-700">
+                  Look out for three things:
+                  <br />
+                  • Qualified coaches (with recognised coaching and lifesaving credentials)
+                  <br />
+                  • Safe coach-to-student ratio (smaller groups usually mean more attention and better safety)
+                  <br />
+                  • Clear progression (confidence → floating → kicking → breathing → basic strokes)
+                  <br />
+                  A good class should feel structured but still fun, so kids stay motivated and not stressed.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem
+                value="how-long-to-learn"
+                className="border border-sky-100 rounded-2xl px-4"
+              >
+                <AccordionTrigger className="text-left text-base md:text-lg font-semibold text-slate-800">
+                  How long does it take for kids to learn to swim?
+                </AccordionTrigger>
+                <AccordionContent className="pb-4 text-sm md:text-base text-slate-700">
+                  It depends on your child’s age, water confidence and how regularly they attend.
+                  For many beginners, it can take roughly 20 to 30 consistent sessions to swim across
+                  a pool confidently without panic. Technique and stamina (and learning more strokes)
+                  can take longer, and that’s normal.
+                  <br />
+                  <br />
+                  We focus on mastery and confidence, not rushing. Consistent attendance and simple practice
+                  between lessons helps a lot.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem
+                value="private-vs-group"
+                className="border border-sky-100 rounded-2xl px-4"
+              >
+                <AccordionTrigger className="text-left text-base md:text-lg font-semibold text-slate-800">
+                  Are private or group swimming classes better for children?
+                </AccordionTrigger>
+                <AccordionContent className="pb-4 text-sm md:text-base text-slate-700">
+                  Both can work, it depends on the child.
+                  <br />
+                  • Private lessons: more focused attention, good for nervous kids or those who need faster
+                  confidence-building
+                  <br />
+                  • Group lessons: social learning, kids often copy peers, and it can be more fun and motivating
+                  <br />
+                  Some families start private to build comfort first, then move to group when the child is ready.
+                  Either way, what matters most is a safe environment, a clear progression and regular practice.
+                </AccordionContent>
+              </AccordionItem>
               </Accordion>
             </div>
 
