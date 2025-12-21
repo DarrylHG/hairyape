@@ -79,7 +79,7 @@ function App() {
             <img
               src="/whatsapp.png"
               alt="WhatsApp"
-              className="w-15 h-15 rounded-full shadow-lg hover:scale-105 transition"
+              className="w-14 h-14 rounded-full shadow-lg hover:scale-105 transition"
               loading="lazy"
             />
           </a>
