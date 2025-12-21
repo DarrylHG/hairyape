@@ -72,14 +72,14 @@ function App() {
             aria-label="Chat on WhatsApp"
           >
             {/* Tooltip */}
-            <span className="absolute left-full ml-3 whitespace-nowrap rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
+            <span className="absolute left-1/2 -translate-x-full -ml-3 whitespace-nowrap rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
               Chat with us
             </span>
 
             <img
               src="/whatsapp.png"
               alt="WhatsApp"
-              className="w-14 h-14 rounded-full shadow-lg hover:scale-105 transition"
+              className="w-15 h-15 rounded-full shadow-lg hover:scale-105 transition"
               loading="lazy"
             />
           </a>
