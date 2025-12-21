@@ -58,9 +58,9 @@ function App() {
           <Route path="/Reviews" element={<Reviews />} />
         </Routes>
 
-        {/* ✅ WhatsApp floating button (bottom-left) + tooltip + auto-hide */}
+        {/* ✅ WhatsApp floating button (bottom-right) + tooltip + auto-hide */}
         <div
-          className={`fixed bottom-5 left-5 z-50 transition-all duration-300 ${
+          className={`fixed bottom-10 right-5 z-50 transition-all duration-300 ${
             showWhatsApp ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3 pointer-events-none"
           }`}
         >
