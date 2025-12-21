@@ -34,6 +34,22 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/Reviews" element={<Reviews />} />
         </Routes>
+
+        {/* ✅ WhatsApp floating button (bottom-left) */}
+        <a
+          href="https://api.whatsapp.com/send?phone=6589510121&text=Hi%20Harry,%20I%20would%20like%20to%20enquire%20more%20about%20your%20swimming%20programmes%20available!"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-5 left-5 z-50"
+          aria-label="Chat on WhatsApp"
+        >
+          <img
+            src="/whatsapp.png"
+            alt="WhatsApp"
+            className="w-14 h-14 rounded-full shadow-lg hover:scale-105 transition"
+            loading="lazy"
+          />
+        </a>
       </Layout>
     </>
   );
