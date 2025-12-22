@@ -66,7 +66,7 @@ export default function Roadmap() {
     <div className="min-h-screen bg-sky-50 py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold text-slate-800 mb-4">The HairyApe Learning Roadmap</h1>
+          <h1 className="text-4xl font-extrabold text-slate-800 mb-4">The ApeChamps Learning Roadmap</h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Our progressive curriculum ensures your child masters each skill before moving to the next level.
           </p>

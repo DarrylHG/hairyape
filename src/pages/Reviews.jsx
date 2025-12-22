@@ -155,7 +155,7 @@ export default function Reviews() {
             Reviews & Results
           </h1>
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl">
-            Feedback from families learning with Hairy Ape Swims.
+            Feedback from families learning with Ape Champs Swim.
           </p>
         </div>
       </section>

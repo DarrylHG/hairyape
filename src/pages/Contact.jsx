@@ -24,7 +24,7 @@ export default function Contact() {
     const TRIAL_TAG = "TRIAL-BOOKING";
     const WA_NUMBER = "6589510121"; // no + sign
 
-    const message = `🦍 Hairy Ape Swims – Enquiry
+    const message = `🦍 Ape Champs Swim – Enquiry
 
 🏷️ TAG: ${TRIAL_TAG}
 
@@ -266,7 +266,7 @@ Thank you! Please share available trial slots.`;
                     <Mail className="mt-0.5 h-5 w-5 text-cyan-300" />
                     <div>
                       <p className="font-semibold text-white">Email</p>
-                      <p className="text-sky-100">hello@hairyapeswims.com</p>
+                      <p className="text-sky-100">hello@apechampsswim.com</p>
                     </div>
                   </div>
 
@@ -311,7 +311,7 @@ Thank you! Please share available trial slots.`;
               </div>
 
               <p className="text-xs md:text-sm text-slate-500">
-                By contacting us, you consent to Hairy Ape Swims reaching out
+                By contacting us, you consent to Ape Champs Swim reaching out
                 via WhatsApp, SMS or email regarding swimming lessons and
                 related updates. We respect your privacy and will not spam you.
               </p>

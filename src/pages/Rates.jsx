@@ -104,7 +104,7 @@ export default function Rates() {
             Simple, Transparent Rates
           </h1>
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl">
-            Hairy Ape Swims keeps pricing straightforward so parents know exactly
+            Ape Champs Swim keeps pricing straightforward so parents know exactly
             what they&apos;re paying for, with no hidden registration or admin fees.
           </p>
         </div>

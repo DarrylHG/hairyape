@@ -19,7 +19,7 @@ export default function FAQ() {
             Frequently Asked Questions
           </h1>
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl">
-            New to Hairy Ape Swims? Here are the answers to the questions
+            New to Ape Champs Swim? Here are the answers to the questions
             parents ask us most often about lessons, safety and locations.
           </p>
         </div>

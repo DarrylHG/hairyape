@@ -8,10 +8,10 @@ export default function About() {
       <section className="bg-sky-50 text-slate-900">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <h1 className="text-3xl md:text-4xl font-extrabold mb-4">
-            About Hairy Ape Swims
+            About Ape Champs Swim
           </h1>
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl">
-            Hairy Ape Swims is a fun, family-friendly swim school in Singapore.
+            Ape Champs Swim is a fun, family-friendly swim school in Singapore.
             We help kids build water confidence, strong technique, and a love
             for swimming in a safe and supportive environment.
           </p>
@@ -26,7 +26,7 @@ export default function About() {
               Our Story
             </h2>
             <p className="text-slate-600 mb-4">
-              Hairy Ape Swims started with a simple goal: to make swimming
+              Ape Champs Swim started with a simple goal: to make swimming
               lessons something children actually look forward to. Instead of
               stressful drills, we focus on games, clear progress and lots of
               encouragement.

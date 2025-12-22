@@ -23,7 +23,7 @@ function Terms() {
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="max-w-3xl mx-auto bg-sky-50/70 border border-sky-100 rounded-3xl p-6 md:p-10 shadow-sm">
             <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-3">
-              Hairy Ape Swims – Terms &amp; Conditions
+              Ape Champs Swim – Terms &amp; Conditions
             </h2>
 
             <div className="text-slate-700 space-y-6 text-sm md:text-base leading-relaxed">
@@ -40,7 +40,7 @@ function Terms() {
               </div>
 
               <p>
-                At Hairy Ape Swims, we care about both our swimmers and our coaches. When a lesson is
+                At Ape Champs Swim, we care about both our swimmers and our coaches. When a lesson is
                 cancelled, it affects a coach’s schedule and income. These terms are here to keep
                 things fair for everyone, while still giving families flexibility when life happens.
                 Thank you for supporting our coaches and respecting the guidelines below.
@@ -117,7 +117,7 @@ function Terms() {
                 <p className="font-semibold text-slate-800 mb-2">Thank you for your understanding
                 </p>
                 <p>
-                 Thank you for being part of the Hairy Ape Swims family 🦍
+                 Thank you for being part of the Ape Champs Swim family 🦍
                  Your understanding helps us create a positive, respectful and sustainable environment 
                  for our swimmers and coaches alike.
                 </p>

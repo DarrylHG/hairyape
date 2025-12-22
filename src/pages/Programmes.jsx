@@ -84,7 +84,7 @@ export default function Programmes() {
             Swim Programmes for Every Child
           </h1>
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl">
-            From first splashes to confident lap swimmers, Hairy Ape Swims
+            From first splashes to confident lap swimmers, Ape Champs Swim
             offers structured, age-appropriate programmes designed to build
             water confidence, proper technique and a lifelong love for swimming.
           </p>

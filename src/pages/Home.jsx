@@ -66,7 +66,7 @@ export default function Home() {
       <section className="py-16 bg-sky-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">Why Choose HairyApe Swims?</h2>
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">Why Choose Ape Champs Swim?</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">We follow strict MOE-aligned swimming standards while ensuring every lesson is filled with laughter and encouragement.</p>
           </div>
 
@@ -122,7 +122,7 @@ export default function Home() {
             <div className="w-full md:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Swimming Lessons in Your Neighborhood</h2>
               <p className="text-lg text-slate-600 mb-6">
-                No need to travel far! HairyApe Swims brings professional coaching to major ActiveSG complexes and private condominium pools across Singapore.
+                No need to travel far! Ape Champs Swim brings professional coaching to major ActiveSG complexes and private condominium pools across Singapore.
               </p>
               <ul className="space-y-4 mb-8">
                 {['Location to your convenience', 'Flexible timing for busy parents', 'Rain-proof sheltered pools available at select venues'].map((item, i) => (
