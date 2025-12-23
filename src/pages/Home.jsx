@@ -47,8 +47,8 @@ export default function Home() {
           {/* Hero Mascot Image */}
           <div className="hidden md:block w-1/3 animate-in slide-in-from-right duration-1000">
              <img 
-               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/692aca26da45a985a45e2908/2caf9604f_WhatsAppImage2025-11-29at180428_2ac218b6.png" 
-               alt="Harry the Hairy Ape" 
+               src="/logo.png" 
+               alt="Harry the Ape CHamps Mascot" 
                className="w-full h-auto drop-shadow-2xl filter brightness-110 hover:scale-105 transition-transform duration-300"
              />
           </div>
