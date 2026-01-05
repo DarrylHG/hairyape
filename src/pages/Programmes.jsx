@@ -50,7 +50,7 @@ export default function Programmes() {
       points: [
         "Freestyle, backstroke, breaststroke, butterfly basics",
         "Endurance and lap swimming",
-        "Great for school swim team trials",
+        "Supports continued skill development and swimming confidence",
       ],
     },
     {
