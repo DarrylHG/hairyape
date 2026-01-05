@@ -21,7 +21,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-16 md:py-28 relative z-10 flex flex-col md:flex-row items-center gap-12">
           <div className="max-w-2xl text-white">
             <div className="inline-block bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 animate-bounce">
-              👋 HELLO FROM HARRY THE HAIRY APE!
+              👋 HELLO FROM HARRY THE APE CHAMPS MASCOT!
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
               Confidence in Water,<br/>
