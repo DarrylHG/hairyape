@@ -6,11 +6,19 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     if (hash) {
-      // wait for the page to render, then scroll to the anchor
-      requestAnimationFrame(() => {
+      const scrollToHash = () => {
         const el = document.querySelector(hash);
-        if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
-      });
+        if (el) {
+          el.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      };
+
+      // First attempt after render
+      requestAnimationFrame(scrollToHash);
+
+      // Fallback for image/layout shifts
+      setTimeout(scrollToHash, 120);
+
       return;
     }
 
