@@ -75,7 +75,7 @@ export default function Home() {
               { 
                 icon: ShieldCheck, 
                 title: "Safety First", 
-                desc: "AustSwim certified coaches who prioritize water safety above all else. Small class ratios." 
+                desc: "ASCA/AustSwim certified coaches who prioritize water safety above all else. Small class ratios." 
               },
               { 
                 icon: Award, 
