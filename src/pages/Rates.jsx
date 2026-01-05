@@ -42,7 +42,7 @@ export default function Rates() {
       details: [
         "4 x 45-minute lessons (once a week)",
         "Technique refinement across strokes with simple drills",
-        "Great for stamina, lap swimming and school team readiness",
+        "Great for stamina and lap swimming",
       ],
     },
     {
