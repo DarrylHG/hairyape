@@ -12,11 +12,8 @@ export default function Home() {
         {/* Background Image Overlay */}
         <div className="absolute inset-0 opacity-30">
           <img 
-            src="/images/hero-swim.jpeg" 
-            alt="Private kids swimming lessons at condo pools in Singapore" 
-            loading="eager"
-            width="1200"
-            height="630"
+            src="https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?q=80&w=1920&auto=format&fit=crop" 
+            alt="Swimming Pool Singapore" 
             className="w-full h-full object-cover"
           />
         </div>
