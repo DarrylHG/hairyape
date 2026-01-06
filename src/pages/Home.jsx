@@ -23,11 +23,17 @@ export default function Home() {
             <div className="inline-block bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 animate-bounce">
               👋 HELLO FROM HARRY THE APE CHAMPS MASCOT!
             </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-              Confidence in Water,<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-300">Fun for Life!</span>
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+              Kids Swimming Lessons in Singapore
             </h1>
-            <p className="text-lg md:text-xl text-cyan-100 mb-8 leading-relaxed">
+            <h2 className="text-2xl md:text-4xl font-bold mb-6 leading-tight">
+              Confidence in Water,{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-300">Fun for Life!</span>
+            </h2>
+            <p className="text-base md:text-lg text-cyan-100 mb-4 leading-relaxed">
+              Ape Champs Swim offers private kids swimming lessons across Singapore, including Punggol, Sengkang, Hougang, Tampines, and nearby condominium pools.
+            </p>
+            <p className="text-base md:text-lg text-cyan-100 mb-8 leading-relaxed">
               Singapore&apos;s most trusted swim school. We teach safe swimming techniques in a fun, family-oriented environment near you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
