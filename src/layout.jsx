@@ -170,7 +170,7 @@ function Layout({ children }) {
       <main className="flex-1">{children}</main>
 
       <footer className="bg-sky-950 border-t border-sky-800 py-4 text-center text-xs text-sky-200">
-        © {new Date().getFullYear()} Ape Champs Swim Pte Ltd. All rights reserved. UEN: 202600447R
+        © {new Date().getFullYear()} Ape Swimming Pte Ltd. All rights reserved. UEN: 202600447R
       </footer>
     </div>
   );
