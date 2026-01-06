@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /coachportal
+
+Sitemap: https://apechampsswim.com.sg/sitemap.xml
