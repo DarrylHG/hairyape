@@ -189,7 +189,7 @@ Thank you! Please share available trial slots.`;
                 {/* Location / timing */}
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">
-                    Condo / Area Preference
+                    Condo
                   </label>
                   <Input
                     type="text"
