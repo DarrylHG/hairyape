@@ -17,6 +17,32 @@
     <meta property="og:image" content="https://apechampsswim.com.sg/images/hero-swim.jpeg" />
     <meta property="og:url" content="https://apechampsswim.com.sg" />
     <meta property="og:type" content="website" />
+    
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsActivityLocation",
+      "name": "Ape Champs Swim",
+      "url": "https://apechampsswim.com.sg",
+      "logo": "https://apechampsswim.com.sg/logo.png",
+      "image": "https://apechampsswim.com.sg/images/hero-swim.jpeg",
+      "description": "Private kids swimming lessons in Singapore conducted at condominium pools with certified coaches.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "SG"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Singapore"
+      },
+      "serviceOffered": {
+        "@type": "Service",
+        "name": "Kids Swimming Lessons",
+        "areaServed": "Singapore"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
