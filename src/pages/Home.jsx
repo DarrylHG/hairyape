@@ -31,7 +31,7 @@ export default function Home() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-300">Fun for Life!</span>
             </h2>
             <p className="text-base md:text-lg text-cyan-100 mb-4 leading-relaxed">
-              Ape Champs Swim offers private kids swimming lessons across Singapore, including Punggol, Sengkang, Hougang, Tampines, and nearby condominium pools.
+              Ape Champs Swim offers private kids swimming lessons at condominium and landed properties across all of Singapore — including Punggol, Sengkang, Hougang, Tampines, Jurong, Sentosa, and everywhere in between.
             </p>
             <p className="text-base md:text-lg text-cyan-100 mb-8 leading-relaxed">
               Singapore&apos;s most trusted swim school. We teach safe swimming techniques in a fun, family-oriented environment near you.
