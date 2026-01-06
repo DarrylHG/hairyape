@@ -287,7 +287,7 @@ Thank you! Please share available trial slots.`;
                         <br />
                         Sat/Sun: 9am – 5pm
                         <br />
-                        Public Holidays: Closed
+                        Public Holidays: Openings may vary
                       </p>
                     </div>
                   </div>
