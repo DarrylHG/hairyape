@@ -1,8 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 
 export default function Reviews() {
+  const reviewSchemaLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Ape Champs Swim",
+    "url": "https://apechampsswim.com.sg",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "20"
+    }
+  };
+
   const reviews = [
     {
       name: "Ms Tan",
@@ -147,15 +160,25 @@ export default function Reviews() {
   ];
 
   return (
-    <div className="bg-slate-900 min-h-screen">
+    <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(reviewSchemaLd)}
+        </script>
+      </Helmet>
+
+      <div className="bg-slate-900 min-h-screen">
       {/* Hero */}
       <section className="bg-sky-50 text-slate-900">
         <div className="container mx-auto px-4 py-16 md:py-20">
-          <h1 className="text-3xl md:text-4xl font-extrabold mb-3">
-            Reviews & Results
+          <h1 className="text-3xl md:text-4xl font-extrabold mb-4">
+            Ape Champs Swim Reviews – What Parents Say
           </h1>
-          <p className="text-lg md:text-xl text-slate-600 max-w-3xl">
-            Feedback from families learning with Ape Champs Swim.
+          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mb-4">
+            Read reviews from families who trust Ape Champs Swim for kids swimming lessons in Singapore. Real parent reviews of our private condo swimming lessons.
+          </p>
+          <p className="text-base md:text-lg text-slate-600 max-w-3xl">
+            ⭐⭐⭐⭐⭐ Rated 5/5 by parents across Singapore
           </p>
         </div>
       </section>
@@ -203,5 +226,6 @@ export default function Reviews() {
         </div>
       </section>
     </div>
+    </>
   );
 }
