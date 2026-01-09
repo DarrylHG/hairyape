@@ -1,21 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 
 export default function Reviews() {
-  const reviewSchemaLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Ape Champs Swim",
-    "url": "https://apechampsswim.com.sg",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "reviewCount": "20"
-    }
-  };
-
   const reviews = [
     {
       name: "Ms Tan",
@@ -160,14 +147,7 @@ export default function Reviews() {
   ];
 
   return (
-    <>
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(reviewSchemaLd)}
-        </script>
-      </Helmet>
-
-      <div className="bg-slate-900 min-h-screen">
+    <div className="bg-slate-900 min-h-screen">
       {/* Hero */}
       <section className="bg-sky-50 text-slate-900">
         <div className="container mx-auto px-4 py-16 md:py-20">
@@ -226,6 +206,5 @@ export default function Reviews() {
         </div>
       </section>
     </div>
-    </>
   );
 }
