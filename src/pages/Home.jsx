@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck, Award, Smile, MapPin } from 'lucide-react';
-import LocationImg from "@/assets/images/acss-c-to-s.png";
+import LocationImg from "@/assets/images/acss-c-to-s.jpeg";
 
 export default function Home() {
   return (
