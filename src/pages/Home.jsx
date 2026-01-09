@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck, Award, Smile, MapPin } from 'lucide-react';
+import LocationImg from "@/assets/images/acss-c-to-s.png";
 
 export default function Home() {
   return (
@@ -115,9 +116,10 @@ export default function Home() {
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-orange-100 rounded-full z-0"></div>
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-cyan-100 rounded-full z-0"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=1000&auto=format&fit=crop" 
-                  alt="Singapore Public Pool" 
+                  src={LocationImg} 
+                  alt="Ape Champs Swim coaching at a condominium pool in Singapore" 
                   className="relative z-10 rounded-3xl shadow-xl w-full h-[400px] object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute bottom-6 right-6 z-20 bg-white py-3 px-5 rounded-xl shadow-lg flex items-center gap-2">
                   <MapPin className="text-orange-500" size={20} />
