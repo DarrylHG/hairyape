@@ -276,12 +276,12 @@ export default function DtoC() {
   const [status, setStatus] = useState("");
 
   const promises = [
-    "I'll communicate properly, even when I'm stressed.",
-    "I'll make time, not excuses.",
-    "I'll be patient and kind, not defensive.",
-    "I'll keep choosing you in the small ways.",
-    "I'll plan cute dates, not just last minute vibes.",
-    "I'll support your goals and hype you up.",
+    "I'll always communicate everything with you.",
+    "I'll always choose you even in the small ways.",
+    "I'll plan dates with you as long as we are free together.",
+    "I'll always support your goals.",
+    "I'll always be there for you in any situation and any time.",
+    "Let's have weekly dates together!",
   ];
 
   async function sendWish(e) {
