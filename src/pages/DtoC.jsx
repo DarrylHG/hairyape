@@ -34,103 +34,6 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
   const [msg, setMsg] = useState("");
   const [flamesOff, setFlamesOff] = useState([false, false, false, false, false]);
   const blowCountRef = useRef(0);
-  const playerReadyRef = useRef(false);
-  const playerRef = useRef(null);
-  const pendingPlayerCommands = useRef([]);
-  const FIXED_VOLUME = 20;
-  const [playerSrc, setPlayerSrc] = useState("");
-
-  useEffect(() => {
-    const origin = window.location.origin;
-    setPlayerSrc(
-      `https://www.youtube.com/embed/MkNeIUgNPQ8?enablejsapi=1&start=20&autoplay=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=MkNeIUgNPQ8&origin=${encodeURIComponent(origin)}`
-    );
-  }, []);
-
-  useEffect(() => {
-    function tryInitPlayer() {
-      if (playerRef.current) return true;
-      if (!window.YT || !window.YT.Player) return false;
-
-      playerRef.current = new window.YT.Player("ytPlayer", {
-        events: {
-          onReady: () => {
-            playerReadyRef.current = true;
-
-            // keep muted on load so volume changes don't sound abrupt
-            sendPlayerCommand("mute");
-            sendPlayerCommand("playVideo");
-
-            // apply initial volume (audible only after unmute)
-            sendPlayerCommand("setVolume", [FIXED_VOLUME]);
-
-            pendingPlayerCommands.current.forEach((fn) => fn());
-            pendingPlayerCommands.current = [];
-          },
-        },
-      });
-
-      return true;
-    }
-
-    const interval = setInterval(() => {
-      if (tryInitPlayer()) clearInterval(interval);
-    }, 200);
-
-    return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    const onMessage = (event) => {
-      if (!event?.data) return;
-      let data;
-      try {
-        data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
-      } catch {
-        return;
-      }
-      if (data?.event === "onReady") {
-        playerReadyRef.current = true;
-        pendingPlayerCommands.current.forEach((fn) => fn());
-        pendingPlayerCommands.current = [];
-      }
-    };
-    window.addEventListener("message", onMessage);
-    return () => window.removeEventListener("message", onMessage);
-  }, []);
-
-  const sendPlayerCommand = (func, args = []) => {
-    const payload = JSON.stringify({ event: "command", func, args });
-    const sendNow = () => {
-      if (playerRef.current?.[func]) {
-        // Prefer direct API if player exists
-        try {
-          playerRef.current[func](...args);
-          return;
-        } catch {
-          // fallback to postMessage
-        }
-      }
-      const iframe = document.getElementById("ytPlayer");
-      iframe?.contentWindow?.postMessage(payload, "*");
-    };
-
-    if (playerReadyRef.current) {
-      sendNow();
-    } else {
-      pendingPlayerCommands.current.push(sendNow);
-    }
-  };
-
-  useEffect(() => {
-    const existing = document.getElementById("yt-api");
-    if (existing) return;
-    const tag = document.createElement("script");
-    tag.id = "yt-api";
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
-  }, []);
 
   useEffect(() => {
     if (!micEnabled) return undefined;
@@ -314,38 +217,12 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
             {micEnabled ? "Disable mic ✋" : "Enable mic 🎤"}
           </button>
 
-          <button
-            type="button"
-            className="btn"
-            onClick={() => {
-              sendPlayerCommand("seekTo", [20, true]);
-              sendPlayerCommand("playVideo");
-              sendPlayerCommand("unMute");
-              sendPlayerCommand("setVolume", [FIXED_VOLUME]);
-              setMsg("ok... our song now 🥹💗");
-            }}
-          >
-            Unmute music 🔊
-          </button>
-
           <button type="button" className="btn primary" onClick={onEnter}>
             enter ♡
           </button>
         </div>
 
         <p style={{ marginTop: 10, opacity: 0.85, fontSize: 13 }}>{msg}</p>
-
-        <div style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}>
-          <iframe
-            id="ytPlayer"
-            title="bgm"
-            width="1"
-            height="1"
-            src={playerSrc}
-            style={{ position: "absolute", opacity: 0, pointerEvents: "none" }}
-            allow="autoplay; encrypted-media"
-          />
-        </div>
       </div>
     </div>
   );
