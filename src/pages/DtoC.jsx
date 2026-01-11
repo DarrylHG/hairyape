@@ -1,499 +1,390 @@
-import { useState, useEffect, useRef } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { useEffect, useMemo, useState } from "react";
 
-// Birthday intro page (always on)
-function DtoC() {
-  const [showIntro, setShowIntro] = useState(false);
-  const [message, setMessage] = useState('');
-  const [micActive, setMicActive] = useState(false);
-  const [flamesOut, setFlamesOut] = useState([false, false, false, false, false]);
-  const [fadeOut, setFadeOut] = useState(false);
+function ordinal(n) {
+  const s = ["th", "st", "nd", "rd"], v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
 
-  const ytPlayerRef = useRef(null);
-  const ytReadyRef = useRef(false);
+function calcAge(birthISO = "2006-01-12") {
+  const [y, m, d] = birthISO.split("-").map(Number);
+  const now = new Date();
+  let age = now.getFullYear() - y;
+  const beforeBday = (now.getMonth() + 1 < m) || (now.getMonth() + 1 === m && now.getDate() < d);
+  if (beforeBday) age -= 1;
+  return age;
+}
 
-  const audioCtxRef = useRef(null);
-  const analyserRef = useRef(null);
-  const micStreamRef = useRef(null);
-  const rafIdRef = useRef(null);
+function getParam(name, fallback = "") {
+  try {
+    const u = new URL(window.location.href);
+    return (u.searchParams.get(name) || fallback).slice(0, 40);
+  } catch {
+    return fallback;
+  }
+}
 
-  const BDAY_NAME = 'Carina';
-  const BDAY_YEAR = 2006;
+function BirthdayIntro({ toName, ageText, onEnter }) {
+  const [micEnabled, setMicEnabled] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [flamesOff, setFlamesOff] = useState([false, false, false, false, false]);
 
-  const getAgeText = () => {
-    const ordinal = (n) => {
-      const s = ['th', 'st', 'nd', 'rd'];
-      const v = n % 100;
-      return n + (s[(v - 20) % 10] || s[v] || s[0]);
-    };
-    const currentYear = new Date().getFullYear();
-    return ordinal(currentYear - BDAY_YEAR);
-  };
-
-  const stopMic = () => {
-    if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
-    rafIdRef.current = null;
-
-    if (micStreamRef.current) {
-      micStreamRef.current.getTracks().forEach((t) => t.stop());
-      micStreamRef.current = null;
-    }
-
-    if (audioCtxRef.current) {
-      audioCtxRef.current.close().catch(() => {});
-      audioCtxRef.current = null;
-    }
-  };
-
-  const destroyYT = () => {
-    try {
-      if (ytPlayerRef.current && typeof ytPlayerRef.current.destroy === 'function') {
-        ytPlayerRef.current.destroy();
-      }
-    } catch (e) {
-      // ignore
-    }
-    ytPlayerRef.current = null;
-    ytReadyRef.current = false;
-  };
-
-  const initYT = () => {
-    const el = document.getElementById('ytPlayer');
-    if (!el) return;
-    if (ytPlayerRef.current) return;
-
-    ytPlayerRef.current = new window.YT.Player('ytPlayer', {
-      videoId: '3nHgx6lhcQY',
-      playerVars: {
-        enablejsapi: 1,
-        start: 20,
-        autoplay: 0,
-        controls: 0,
-        mute: 1,
-        loop: 1,
-        playlist: '3nHgx6lhcQY',
-        playsinline: 1,
-      },
-      events: {
-        onReady: () => {
-          ytReadyRef.current = true;
-          try {
-            ytPlayerRef.current.mute();
-            ytPlayerRef.current.setVolume(30);
-          } catch (e) {
-            // ignore
-          }
-        },
-      },
-    });
-  };
+  const allOut = flamesOff.every(Boolean);
 
   useEffect(() => {
-    setShowIntro(true);
-
-    const ensureYT = () => {
-      if (window.YT && window.YT.Player) {
-        initYT();
-        return;
-      }
-
-      if (!document.getElementById('yt-iframe-api')) {
-        const tag = document.createElement('script');
-        tag.id = 'yt-iframe-api';
-        tag.src = 'https://www.youtube.com/iframe_api';
-        document.body.appendChild(tag);
-      }
-
-      const prev = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => {
-        if (typeof prev === 'function') prev();
-        initYT();
-      };
-    };
-
-    ensureYT();
-
-    if (typeof window.spawnHearts === 'function') {
-      window.spawnHearts(28);
-      setTimeout(() => window.spawnHearts(22), 450);
-      setTimeout(() => window.spawnHearts(18), 900);
+    const existing = document.getElementById("yt-api");
+    if (!existing) {
+      const tag = document.createElement("script");
+      tag.id = "yt-api";
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
     }
-
-    return () => {
-      stopMic();
-      destroyYT();
-    };
   }, []);
 
-  const putOutOne = () => {
-    const onIndices = flamesOut.map((out, i) => (out ? -1 : i)).filter((i) => i >= 0);
-    if (!onIndices.length) return;
+  useEffect(() => {
+    let audioCtx, analyser, stream, rafId;
 
-    const randomIndex = onIndices[Math.floor(Math.random() * onIndices.length)];
-    const newFlames = [...flamesOut];
-    newFlames[randomIndex] = true;
-    setFlamesOut(newFlames);
-
-    if (typeof window.spawnHearts === 'function') window.spawnHearts(10);
-
-    if (newFlames.every((f) => f)) {
-      setMessage('ALL OUT!! ok make a wish, birthday girl 🎂💗');
+    async function startMic() {
       try {
-        if (ytPlayerRef.current) {
-          ytPlayerRef.current.setVolume(Math.max(ytPlayerRef.current.getVolume?.() ?? 30, 30));
-        }
-      } catch (e) {
-        // ignore
+        setMsg("listening… blow at your mic 😮‍💨");
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        stream = await navigator.mediaDevices.getUserMedia({
+          audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+        });
+
+        const source = audioCtx.createMediaStreamSource(stream);
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 2048;
+        source.connect(analyser);
+
+        const data = new Uint8Array(analyser.fftSize);
+        let cooldown = 0;
+
+        const loop = () => {
+          analyser.getByteTimeDomainData(data);
+          let sum = 0;
+          for (let i = 0; i < data.length; i++) {
+            const x = (data[i] - 128) / 128;
+            sum += x * x;
+          }
+          const rms = Math.sqrt(sum / data.length);
+          const THRESH = 0.12;
+
+          if (cooldown > 0) cooldown--;
+
+          if (rms > THRESH && cooldown === 0 && !allOut) {
+            setFlamesOff((prev) => {
+              const onIdx = prev.map((v, i) => (!v ? i : null)).filter((v) => v !== null);
+              if (onIdx.length === 0) return prev;
+              const pick = onIdx[Math.floor(Math.random() * onIdx.length)];
+              const next = [...prev];
+              next[pick] = true;
+              return next;
+            });
+            cooldown = 25;
+          }
+
+          rafId = requestAnimationFrame(loop);
+        };
+
+        loop();
+      } catch {
+        setMsg("mic blocked 😭 please allow mic permission then try again.");
+        setMicEnabled(false);
       }
-    } else {
-      setMessage('wah strong sia, keep going 😂');
-    }
-  };
-
-  const startMic = async () => {
-    try {
-      setMessage('listening… blow at your mic now 😮‍💨');
-
-      audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
-      if (audioCtxRef.current.state === 'suspended') {
-        await audioCtxRef.current.resume().catch(() => {});
-      }
-
-      micStreamRef.current = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          echoCancellation: true,
-          noiseSuppression: true,
-          autoGainControl: true,
-        },
-      });
-
-      const source = audioCtxRef.current.createMediaStreamSource(micStreamRef.current);
-      analyserRef.current = audioCtxRef.current.createAnalyser();
-      analyserRef.current.fftSize = 2048;
-      source.connect(analyserRef.current);
-
-      const data = new Uint8Array(analyserRef.current.fftSize);
-      let cooldown = 0;
-
-      const loop = () => {
-        if (!analyserRef.current) return;
-
-        analyserRef.current.getByteTimeDomainData(data);
-        let sum = 0;
-        for (let i = 0; i < data.length; i++) {
-          const x = (data[i] - 128) / 128;
-          sum += x * x;
-        }
-        const rms = Math.sqrt(sum / data.length);
-        const THRESH = 0.1;
-        if (cooldown > 0) cooldown--;
-        if (rms > THRESH && cooldown === 0 && !flamesOut.every((f) => f)) {
-          putOutOne();
-          cooldown = 22;
-        }
-        rafIdRef.current = requestAnimationFrame(loop);
-      };
-
-      loop();
-    } catch (err) {
-      setMessage('mic blocked 😭 enable mic permission then try again.');
-      stopMic();
-      setMicActive(false);
-    }
-  };
-
-  const handleMicToggle = () => {
-    if (flamesOut.every((f) => f)) {
-      setMessage('already out liao 😂 press enter ♡');
-      return;
     }
 
-    if (micActive) {
-      setMessage('mic off.');
-      stopMic();
-      setMicActive(false);
-    } else {
-      setMicActive(true);
-      startMic();
+    function stopMic() {
+      if (rafId) cancelAnimationFrame(rafId);
+      if (stream) stream.getTracks().forEach((t) => t.stop());
+      if (audioCtx) audioCtx.close().catch(() => {});
     }
-  };
 
-  const handleUnmute = () => {
-    if (!ytPlayerRef.current || !ytReadyRef.current) {
-      setMessage('music player loading...');
-      return;
-    }
-    try {
-      ytPlayerRef.current.unMute();
-      ytPlayerRef.current.seekTo(20, true);
-      ytPlayerRef.current.playVideo();
-      setMessage('ok… Steal My Girl 🥹💗');
-    } catch (e) {
-      setMessage('music player loading...');
-    }
-  };
+    if (micEnabled) startMic();
+    else stopMic();
 
-  const handleEnter = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    return () => stopMic();
+  }, [micEnabled, allOut]);
 
-    setFadeOut(true);
-    setTimeout(() => {
-      setShowIntro(false);
-      if (typeof window.spawnHearts === 'function') window.spawnHearts(18);
-    }, 700);
-  };
-
-  const ageText = getAgeText();
-  const name = new URLSearchParams(window.location.search).get('to') || BDAY_NAME;
-
-  if (!showIntro) return null;
+  useEffect(() => {
+    if (allOut) setMsg("ALL OUT!! ok make a wish, birthday girl 🎂💗");
+  }, [allOut]);
 
   return (
-    <>
-      <Helmet>
-        <title>Happy Birthday {name} 🎂 | Ape Champs Swim</title>
-      </Helmet>
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        display: "grid",
+        placeItems: "center",
+        background:
+          "radial-gradient(1200px 600px at 20% 10%, rgba(255,106,162,.28), transparent 60%), radial-gradient(1200px 600px at 80% 30%, rgba(255,215,120,.22), transparent 60%), linear-gradient(160deg, #0b0b10, #1a0b1e)",
+      }}
+    >
+      <iframe
+        id="ytPlayer"
+        width="0"
+        height="0"
+        src="https://www.youtube.com/embed/3nHgx6lhcQY?enablejsapi=1&start=20&autoplay=0&mute=1&loop=1&playlist=3nHgx6lhcQY"
+        frameBorder="0"
+        allow="autoplay; encrypted-media"
+        allowFullScreen
+        title="bgm"
+      />
 
-      <div className={`bday ${fadeOut ? 'bday-fadeout' : ''}`}>
-        <div className="bday-card">
-          <div className="bday-top">
-            <div className="pill">🎂 12 Jan</div>
-            <div className="pill">for <strong>{name}</strong></div>
+      <div
+        style={{
+          width: "min(900px, 92vw)",
+          border: "1px solid rgba(255,255,255,.16)",
+          background: "rgba(0,0,0,.30)",
+          backdropFilter: "blur(10px)",
+          borderRadius: 26,
+          padding: 24,
+          textAlign: "center",
+          boxShadow: "0 20px 70px rgba(0,0,0,.4)",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10, opacity: 0.9 }}>
+          <div style={{ border: "1px solid rgba(255,255,255,.16)", borderRadius: 999, padding: "8px 12px" }}>
+            🎂 12 Jan
           </div>
-
-          <h1 id="bdayTitle" className="bday-title">
-            Happy {ageText} Birthday, <span className="bday-name">{name}</span> 🎉
-          </h1>
-          <p className="bday-sub">Make a wish, then blow out the candles.</p>
-
-          <div className="cake-wrap">
-            <div className="cake">
-              <div className="cake-top"></div>
-              <div className="cake-mid"></div>
-              <div className="cake-bot"></div>
-
-              <div className="candles">
-                {flamesOut.map((isOut, i) => (
-                  <div key={i} className="candle" data-i={i}>
-                    <span className={`flame ${isOut ? 'off' : ''}`}></span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div style={{ border: "1px solid rgba(255,255,255,.16)", borderRadius: 999, padding: "8px 12px" }}>
+            for <strong>{toName}</strong>
           </div>
-
-          <div className="bday-actions">
-            <button type="button" onClick={handleMicToggle} className="btn">
-              {micActive ? 'Disable mic ✋' : 'Enable mic 🎤'}
-            </button>
-            <button type="button" onClick={handleUnmute} className="btn">Unmute music 🔊</button>
-            <button type="button" onClick={handleEnter} className="btn primary">enter ♡</button>
-          </div>
-
-          {message && <p className="bday-msg">{message}</p>}
         </div>
 
-        <div id="ytPlayer" style={{ width: 0, height: 0, overflow: 'hidden' }} />
+        <h1 style={{ margin: "14px 0 6px", fontSize: "clamp(28px,4vw,46px)" }}>
+          Happy {ageText} Birthday, {toName} 🎉
+        </h1>
+        <p style={{ marginTop: 0, opacity: 0.8 }}>Make a wish, then blow out the candles.</p>
+
+        <div style={{ display: "grid", placeItems: "center", margin: "16px 0 8px" }}>
+          <div style={{ width: 260, height: 200, position: "relative", filter: "drop-shadow(0 18px 25px rgba(0,0,0,.35))" }}>
+            <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", top: 62, width: 220, height: 40, borderRadius: 18, border: "1px solid rgba(255,255,255,.14)", background: "rgba(255,170,210,.22)" }} />
+            <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", top: 92, width: 240, height: 52, borderRadius: 18, border: "1px solid rgba(255,255,255,.14)", background: "rgba(255,255,255,.08)" }} />
+            <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", top: 136, width: 260, height: 56, borderRadius: 18, border: "1px solid rgba(255,255,255,.14)", background: "rgba(255,220,160,.12)" }} />
+
+            <div style={{ position: "absolute", top: 28, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 14 }}>
+              {flamesOff.map((off, i) => (
+                <div
+                  key={i}
+                  style={{
+                    width: 14,
+                    height: 62,
+                    borderRadius: 10,
+                    background: "rgba(255,255,255,.16)",
+                    border: "1px solid rgba(255,255,255,.18)",
+                    position: "relative",
+                  }}
+                >
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: -18,
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      width: 14,
+                      height: 18,
+                      borderRadius: "50%",
+                      opacity: off ? 0 : 1,
+                      background:
+                        "radial-gradient(circle at 35% 35%, rgba(255,255,255,.95), rgba(255,210,120,.75) 45%, rgba(255,106,162,.45) 80%)",
+                      boxShadow: "0 0 18px rgba(255,180,120,.35)",
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginTop: 6 }}>
+          <button type="button" className="btn" onClick={() => setMicEnabled((v) => !v)}>
+            {micEnabled ? "Disable mic ✋" : "Enable mic 🎤"}
+          </button>
+
+          <button
+            type="button"
+            className="btn"
+            onClick={() => {
+              const iframe = document.getElementById("ytPlayer");
+              if (!iframe) return;
+              const cmd = (func, args = []) =>
+                iframe.contentWindow?.postMessage(JSON.stringify({ event: "command", func, args }), "*");
+              cmd("seekTo", [20, true]);
+              cmd("unMute");
+              cmd("playVideo");
+              setMsg("ok… our song now 🥹💗");
+            }}
+          >
+            Unmute music 🔊
+          </button>
+
+          <button type="button" className="btn primary" onClick={onEnter}>
+            enter ♡
+          </button>
+        </div>
+
+        <p style={{ marginTop: 10, opacity: 0.85, fontSize: 13 }}>{msg}</p>
       </div>
-
-      <style>{`
-        .bday {
-          position: fixed;
-          inset: 0;
-          z-index: 9999;
-          display: grid;
-          place-items: center;
-          background:
-            radial-gradient(1200px 600px at 20% 10%, rgba(255,106,162,.28), transparent 60%),
-            radial-gradient(1200px 600px at 80% 30%, rgba(255,215,120,.22), transparent 60%),
-            linear-gradient(160deg, #0b0b10, #1a0b1e);
-          animation: bdayIn .7s ease;
-        }
-
-        .bday-fadeout { animation: bdayOut .7s ease forwards; }
-
-        @keyframes bdayIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes bdayOut { from { opacity: 1; } to { opacity: 0; } }
-
-        .bday-card {
-          width: min(860px, 92vw);
-          border: 1px solid rgba(255,255,255,.16);
-          background: rgba(0,0,0,.30);
-          backdrop-filter: blur(10px);
-          border-radius: 26px;
-          padding: 24px;
-          box-shadow: 0 20px 70px rgba(0,0,0,.4);
-          text-align: center;
-          position: relative;
-        }
-
-        .bday-top {
-          display: flex;
-          justify-content: space-between;
-          gap: 10px;
-          flex-wrap: wrap;
-          margin-bottom: 16px;
-        }
-
-        .pill {
-          background: rgba(255,255,255,.08);
-          border: 1px solid rgba(255,255,255,.12);
-          padding: 6px 14px;
-          border-radius: 999px;
-          font-size: 14px;
-          color: rgba(255,255,255,.85);
-        }
-
-        .bday-title {
-          font-size: clamp(28px, 4vw, 46px);
-          margin: 16px 0 10px;
-          color: white;
-        }
-
-        .bday-name { color: #ff6aa2; }
-
-        .bday-sub {
-          color: rgba(255,255,255,.75);
-          margin-bottom: 20px;
-        }
-
-        .bday-actions {
-          display: flex;
-          justify-content: center;
-          gap: 10px;
-          flex-wrap: wrap;
-          margin-top: 20px;
-        }
-
-        .btn {
-          border: none;
-          padding: 12px 20px;
-          font-size: 15px;
-          border-radius: 999px;
-          cursor: pointer;
-          background: rgba(255,255,255,.12);
-          border: 1px solid rgba(255,255,255,.18);
-          color: white;
-          font-weight: 500;
-          transition: all .2s;
-        }
-
-        .btn:hover {
-          background: rgba(255,255,255,.18);
-          transform: translateY(-1px);
-        }
-
-        .btn.primary {
-          background: linear-gradient(135deg, #ff7aa2, #ffd36a);
-          color: #1a0014;
-          font-weight: 600;
-        }
-
-        .btn.primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(255,122,162,.4);
-        }
-
-        .bday-msg {
-          margin-top: 14px;
-          color: rgba(255,255,255,.8);
-          font-size: 14px;
-          min-height: 20px;
-        }
-
-        .cake-wrap { display: grid; place-items: center; margin: 18px 0 8px; }
-
-        .cake {
-          width: 260px;
-          height: 200px;
-          position: relative;
-          filter: drop-shadow(0 18px 25px rgba(0,0,0,.35));
-        }
-
-        .cake-top, .cake-mid, .cake-bot {
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          border-radius: 18px;
-          border: 1px solid rgba(255,255,255,.14);
-        }
-
-        .cake-top {
-          top: 62px;
-          width: 220px;
-          height: 40px;
-          background: rgba(255,170,210,.22);
-        }
-
-        .cake-mid {
-          top: 92px;
-          width: 240px;
-          height: 52px;
-          background: rgba(255,255,255,.08);
-        }
-
-        .cake-bot {
-          top: 136px;
-          width: 260px;
-          height: 56px;
-          background: rgba(255,220,160,.12);
-        }
-
-        .candles {
-          position: absolute;
-          top: 28px;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          gap: 14px;
-        }
-
-        .candle {
-          width: 14px;
-          height: 62px;
-          background: rgba(255,255,255,.16);
-          border: 1px solid rgba(255,255,255,.18);
-          border-radius: 10px;
-          position: relative;
-        }
-
-        .candle:before {
-          content: '';
-          position: absolute;
-          inset: 8px 4px auto 4px;
-          height: 10px;
-          border-radius: 8px;
-          background: rgba(255,106,162,.35);
-        }
-
-        .flame {
-          position: absolute;
-          top: -18px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 14px;
-          height: 18px;
-          border-radius: 50%;
-          background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.95), rgba(255,210,120,.75) 45%, rgba(255,106,162,.45) 80%);
-          box-shadow: 0 0 18px rgba(255,180,120,.35);
-          animation: flicker .12s infinite alternate;
-          transition: all .3s;
-        }
-
-        @keyframes flicker {
-          from { transform: translateX(-50%) rotate(-3deg) scale(1); }
-          to { transform: translateX(-50%) rotate(3deg) scale(1.05); }
-        }
-
-        .flame.off {
-          opacity: 0;
-          transform: translateX(-50%) scale(.6);
-          animation: none;
-        }
-      `}</style>
-    </>
+    </div>
   );
 }
 
-export default DtoC;
+export default function DtoC() {
+  const toName = useMemo(() => getParam("to", "Carina"), []);
+  const fromName = useMemo(() => getParam("from", "Darryl"), []);
+  const ageText = useMemo(() => ordinal(calcAge("2006-01-12")), []);
+
+  const [showIntro, setShowIntro] = useState(true);
+
+  const promises = [
+    "I’ll communicate properly, even when I’m stressed.",
+    "I’ll make time, not excuses.",
+    "I’ll be patient and kind, not defensive.",
+    "I’ll keep choosing you in the small ways.",
+    "I’ll plan cute dates, not just last minute vibes.",
+    "I’ll support your goals and hype you up.",
+  ];
+
+  const storageKey = "carina_promises_2026";
+  const [checked, setChecked] = useState(() => {
+    try {
+      const raw = localStorage.getItem(storageKey);
+      return raw ? JSON.parse(raw) : Array(promises.length).fill(false);
+    } catch {
+      return Array(promises.length).fill(false);
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(checked));
+    } catch {}
+  }, [checked]);
+
+  const [wish, setWish] = useState("");
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState("");
+
+  async function sendWish(e) {
+    e.preventDefault();
+    setStatus("");
+
+    const trimmed = wish.trim();
+    if (trimmed.length < 3) {
+      setStatus("Write a bit more pls 😭");
+      return;
+    }
+
+    setSending(true);
+    try {
+      const res = await fetch("/api/bday-wish", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          toName,
+          fromName,
+          wish: trimmed,
+          page: window.location.pathname,
+          ua: navigator.userAgent,
+        }),
+      });
+
+      if (!res.ok) throw new Error("send failed");
+      setWish("");
+      setStatus("Sent 💌 I’ll read it soon.");
+    } catch (err) {
+      setStatus("Oops failed to send 😭 try again later.");
+    } finally {
+      setSending(false);
+    }
+  }
+
+  return (
+    <div style={{ padding: "28px 16px", maxWidth: 980, margin: "0 auto" }}>
+      {showIntro && (
+        <BirthdayIntro
+          toName={toName}
+          ageText={ageText}
+          onEnter={() => setShowIntro(false)}
+        />
+      )}
+
+      <h1 style={{ margin: "6px 0 10px" }}>My promises to you this year 💗</h1>
+      <p style={{ opacity: 0.8, marginTop: 0 }}>
+        for {toName}, from {fromName}
+      </p>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1.1fr .9fr", gap: 16 }}>
+        <div style={{ border: "1px solid rgba(255,255,255,.12)", borderRadius: 18, padding: 16, background: "rgba(0,0,0,.10)" }}>
+          {promises.map((p, i) => (
+            <label
+              key={i}
+              style={{
+                display: "flex",
+                gap: 10,
+                alignItems: "flex-start",
+                padding: "10px 10px",
+                border: "1px solid rgba(255,255,255,.12)",
+                borderRadius: 14,
+                background: "rgba(255,255,255,.04)",
+                margin: "8px 0",
+                cursor: "pointer",
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={checked[i]}
+                onChange={() =>
+                  setChecked((prev) => {
+                    const next = [...prev];
+                    next[i] = !next[i];
+                    return next;
+                  })
+                }
+                style={{ marginTop: 3 }}
+              />
+              <span style={{ opacity: 0.9 }}>{p}</span>
+            </label>
+          ))}
+        </div>
+
+        <div style={{ border: "1px solid rgba(255,255,255,.12)", borderRadius: 18, padding: 16, background: "rgba(0,0,0,.10)" }}>
+          <h2 style={{ margin: "0 0 8px", fontSize: 18 }}>Type your birthday wish 🎈</h2>
+          <p style={{ marginTop: 0, opacity: 0.75, fontSize: 13 }}>
+            When you press send, it goes to my email.
+          </p>
+
+          <form onSubmit={sendWish}>
+            <textarea
+              value={wish}
+              onChange={(e) => setWish(e.target.value)}
+              placeholder="Dear Darryl…"
+              rows={7}
+              style={{
+                width: "100%",
+                borderRadius: 14,
+                padding: 12,
+                border: "1px solid rgba(255,255,255,.16)",
+                background: "rgba(0,0,0,.22)",
+                color: "white",
+                resize: "vertical",
+                outline: "none",
+              }}
+            />
+            <div style={{ display: "flex", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
+              <button type="submit" className="btn primary" disabled={sending}>
+                {sending ? "Sending..." : "Send 💌"}
+              </button>
+              <button type="button" className="btn" onClick={() => setWish("")} disabled={sending}>
+                Clear
+              </button>
+            </div>
+            {status && <p style={{ marginTop: 10, opacity: 0.85, fontSize: 13 }}>{status}</p>}
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
