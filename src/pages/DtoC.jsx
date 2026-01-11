@@ -51,18 +51,25 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
     function tryInitPlayer() {
       if (playerRef.current) return true;
       if (!window.YT || !window.YT.Player) return false;
+
       playerRef.current = new window.YT.Player("ytPlayer", {
         events: {
           onReady: () => {
             playerReadyRef.current = true;
+
+            // keep muted on load so volume changes don't sound abrupt
             sendPlayerCommand("mute");
-            sendPlayerCommand("setVolume", [volume]);
             sendPlayerCommand("playVideo");
+
+            // apply initial volume (audible only after unmute)
+            sendPlayerCommand("setVolume", [volume]);
+
             pendingPlayerCommands.current.forEach((fn) => fn());
             pendingPlayerCommands.current = [];
           },
         },
       });
+
       return true;
     }
 
@@ -71,7 +78,8 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
     }, 200);
 
     return () => clearInterval(interval);
-  }, [volume]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const onMessage = (event) => {
@@ -86,12 +94,11 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
         playerReadyRef.current = true;
         pendingPlayerCommands.current.forEach((fn) => fn());
         pendingPlayerCommands.current = [];
-        sendPlayerCommand("setVolume", [volume]);
       }
     };
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
-  }, [volume]);
+  }, []);
 
   const sendPlayerCommand = (func, args = []) => {
     const payload = JSON.stringify({ event: "command", func, args });
@@ -115,6 +122,11 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
       pendingPlayerCommands.current.push(sendNow);
     }
   };
+
+  useEffect(() => {
+    // Update volume whenever slider changes
+    sendPlayerCommand("setVolume", [Number(volume)]);
+  }, [volume]);
 
   useEffect(() => {
     const existing = document.getElementById("yt-api");
@@ -311,17 +323,10 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
             type="button"
             className="btn"
             onClick={() => {
-              if (playerRef.current?.loadVideoById) {
-                playerRef.current.loadVideoById({ videoId: "3nHgx6lhcQY", startSeconds: 20 });
-                playerRef.current.playVideo();
-                playerRef.current.unMute();
-                playerRef.current.setVolume(volume);
-              } else {
-                sendPlayerCommand("playVideo");
-                sendPlayerCommand("seekTo", [20, true]);
-                sendPlayerCommand("unMute");
-                sendPlayerCommand("setVolume", [volume]);
-              }
+              sendPlayerCommand("seekTo", [20, true]);
+              sendPlayerCommand("playVideo");
+              sendPlayerCommand("unMute");
+              sendPlayerCommand("setVolume", [Number(volume)]);
               setMsg("ok... our song now 🥹💗");
             }}
           >
@@ -335,11 +340,7 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
               min="0"
               max="100"
               value={volume}
-              onChange={(e) => {
-                const val = Number(e.target.value);
-                setVolume(val);
-                sendPlayerCommand("setVolume", [val]);
-              }}
+              onChange={(e) => setVolume(Number(e.target.value))}
               style={{ width: 160 }}
             />
           </label>
