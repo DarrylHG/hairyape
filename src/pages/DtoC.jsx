@@ -37,7 +37,7 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
   const playerReadyRef = useRef(false);
   const playerRef = useRef(null);
   const pendingPlayerCommands = useRef([]);
-  const FIXED_VOLUME = 50;
+  const FIXED_VOLUME = 20;
   const [playerSrc, setPlayerSrc] = useState("");
 
   useEffect(() => {
@@ -321,7 +321,7 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
               sendPlayerCommand("seekTo", [20, true]);
               sendPlayerCommand("playVideo");
               sendPlayerCommand("unMute");
-              sendPlayerCommand("setVolume", [50]);
+              sendPlayerCommand("setVolume", [FIXED_VOLUME]);
               setMsg("ok... our song now 🥹💗");
             }}
           >
