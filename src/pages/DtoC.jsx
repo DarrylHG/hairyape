@@ -37,7 +37,7 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
   const playerReadyRef = useRef(false);
   const playerRef = useRef(null);
   const pendingPlayerCommands = useRef([]);
-  const [volume, setVolume] = useState(60);
+  const FIXED_VOLUME = 50;
   const [playerSrc, setPlayerSrc] = useState("");
 
   useEffect(() => {
@@ -62,7 +62,7 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
             sendPlayerCommand("playVideo");
 
             // apply initial volume (audible only after unmute)
-            sendPlayerCommand("setVolume", [volume]);
+            sendPlayerCommand("setVolume", [FIXED_VOLUME]);
 
             pendingPlayerCommands.current.forEach((fn) => fn());
             pendingPlayerCommands.current = [];
@@ -122,11 +122,6 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
       pendingPlayerCommands.current.push(sendNow);
     }
   };
-
-  useEffect(() => {
-    // Update volume whenever slider changes
-    sendPlayerCommand("setVolume", [Number(volume)]);
-  }, [volume]);
 
   useEffect(() => {
     const existing = document.getElementById("yt-api");
@@ -326,24 +321,12 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
               sendPlayerCommand("seekTo", [20, true]);
               sendPlayerCommand("playVideo");
               sendPlayerCommand("unMute");
-              sendPlayerCommand("setVolume", [Number(volume)]);
+              sendPlayerCommand("setVolume", [50]);
               setMsg("ok... our song now 🥹💗");
             }}
           >
             Unmute music 🔊
           </button>
-
-          <label style={{ display: "flex", alignItems: "center", gap: 8, color: "white" }}>
-            Volume
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={volume}
-              onChange={(e) => setVolume(Number(e.target.value))}
-              style={{ width: 160 }}
-            />
-          </label>
 
           <button type="button" className="btn primary" onClick={onEnter}>
             enter ♡
