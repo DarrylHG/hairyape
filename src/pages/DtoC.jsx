@@ -43,7 +43,7 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
   useEffect(() => {
     const origin = window.location.origin;
     setPlayerSrc(
-      `https://www.youtube.com/embed/oC5ZkmFvydk?enablejsapi=1&autoplay=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=oC5ZkmFvydk&origin=${encodeURIComponent(origin)}`
+      `https://www.youtube.com/embed/oC5ZkmFvydk?enablejsapi=1&start=20&autoplay=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=oC5ZkmFvydk&origin=${encodeURIComponent(origin)}`
     );
   }, []);
 
@@ -55,9 +55,9 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
         events: {
           onReady: () => {
             playerReadyRef.current = true;
-            sendPlayerCommand("playVideo");
-            sendPlayerCommand("unMute");
+            sendPlayerCommand("mute");
             sendPlayerCommand("setVolume", [volume]);
+            sendPlayerCommand("playVideo");
             pendingPlayerCommands.current.forEach((fn) => fn());
             pendingPlayerCommands.current = [];
           },
@@ -311,10 +311,17 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
             type="button"
             className="btn"
             onClick={() => {
-              sendPlayerCommand("seekTo", [20, true]);
-              sendPlayerCommand("unMute");
-              sendPlayerCommand("playVideo");
-              sendPlayerCommand("setVolume", [volume]);
+              if (playerRef.current?.loadVideoById) {
+                playerRef.current.loadVideoById({ videoId: "oC5ZkmFvydk", startSeconds: 20 });
+                playerRef.current.unMute();
+                playerRef.current.setVolume(volume);
+                playerRef.current.playVideo();
+              } else {
+                sendPlayerCommand("seekTo", [20, true]);
+                sendPlayerCommand("unMute");
+                sendPlayerCommand("setVolume", [volume]);
+                sendPlayerCommand("playVideo");
+              }
               setMsg("ok... our song now 🥹💗");
             }}
           >
