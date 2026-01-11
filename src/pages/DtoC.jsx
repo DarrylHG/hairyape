@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 const EMAILJS_SERVICE_ID = "service_houufy7";
@@ -33,6 +33,7 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
   const [micEnabled, setMicEnabled] = useState(false);
   const [msg, setMsg] = useState("");
   const [flamesOff, setFlamesOff] = useState([false, false, false, false, false]);
+  const blowCountRef = useRef(0);
 
   useEffect(() => {
     const existing = document.getElementById("yt-api");
@@ -77,9 +78,16 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
           const rms = Math.sqrt(sum / data.length);
 
           if (rms > 18 && cooldown <= 0) {
-            setFlamesOff([true, true, true, true, true]);
-            setMsg("candles out! make a wish ✨");
-            cooldown = 40;
+            if (blowCountRef.current === 0) {
+              blowCountRef.current = 1;
+              setMsg("almost there... one more blow!");
+              cooldown = 30;
+            } else {
+              blowCountRef.current = 0;
+              setFlamesOff([true, true, true, true, true]);
+              setMsg("candles out! make a wish ✨");
+              cooldown = 40;
+            }
           }
 
           cooldown = Math.max(cooldown - 1, 0);
