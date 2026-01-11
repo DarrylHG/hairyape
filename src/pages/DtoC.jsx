@@ -43,7 +43,7 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
   useEffect(() => {
     const origin = window.location.origin;
     setPlayerSrc(
-      `https://www.youtube.com/embed/oC5ZkmFvydk?enablejsapi=1&start=20&autoplay=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=oC5ZkmFvydk&origin=${encodeURIComponent(origin)}`
+      `https://www.youtube.com/embed/3nHgx6lhcQY?enablejsapi=1&start=20&autoplay=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=3nHgx6lhcQY&origin=${encodeURIComponent(origin)}`
     );
   }, []);
 
@@ -312,15 +312,15 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
             className="btn"
             onClick={() => {
               if (playerRef.current?.loadVideoById) {
-                playerRef.current.loadVideoById({ videoId: "oC5ZkmFvydk", startSeconds: 20 });
+                playerRef.current.loadVideoById({ videoId: "3nHgx6lhcQY", startSeconds: 20 });
+                playerRef.current.playVideo();
                 playerRef.current.unMute();
                 playerRef.current.setVolume(volume);
-                playerRef.current.playVideo();
               } else {
+                sendPlayerCommand("playVideo");
                 sendPlayerCommand("seekTo", [20, true]);
                 sendPlayerCommand("unMute");
                 sendPlayerCommand("setVolume", [volume]);
-                sendPlayerCommand("playVideo");
               }
               setMsg("ok... our song now 🥹💗");
             }}
