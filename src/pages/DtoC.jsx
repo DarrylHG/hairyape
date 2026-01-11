@@ -35,8 +35,43 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
   const [flamesOff, setFlamesOff] = useState([false, false, false, false, false]);
   const blowCountRef = useRef(0);
   const playerReadyRef = useRef(false);
+  const playerRef = useRef(null);
   const pendingPlayerCommands = useRef([]);
   const [volume, setVolume] = useState(60);
+  const [playerSrc, setPlayerSrc] = useState("");
+
+  useEffect(() => {
+    const origin = window.location.origin;
+    setPlayerSrc(
+      `https://www.youtube.com/embed/oC5ZkmFvydk?enablejsapi=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=oC5ZkmFvydk&origin=${encodeURIComponent(
+        origin
+      )}`
+    );
+  }, []);
+
+  useEffect(() => {
+    function tryInitPlayer() {
+      if (playerRef.current) return true;
+      if (!window.YT || !window.YT.Player) return false;
+      playerRef.current = new window.YT.Player("ytPlayer", {
+        events: {
+          onReady: () => {
+            playerReadyRef.current = true;
+            sendPlayerCommand("setVolume", [volume]);
+            pendingPlayerCommands.current.forEach((fn) => fn());
+            pendingPlayerCommands.current = [];
+          },
+        },
+      });
+      return true;
+    }
+
+    const interval = setInterval(() => {
+      if (tryInitPlayer()) clearInterval(interval);
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, [volume]);
 
   useEffect(() => {
     const onMessage = (event) => {
@@ -59,10 +94,21 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
   }, [volume]);
 
   const sendPlayerCommand = (func, args = []) => {
-    const iframe = document.getElementById("ytPlayer");
-    if (!iframe) return;
     const payload = JSON.stringify({ event: "command", func, args });
-    const sendNow = () => iframe.contentWindow?.postMessage(payload, "*");
+    const sendNow = () => {
+      if (playerRef.current?.[func]) {
+        // Prefer direct API if player exists
+        try {
+          playerRef.current[func](...args);
+          return;
+        } catch {
+          // fallback to postMessage
+        }
+      }
+      const iframe = document.getElementById("ytPlayer");
+      iframe?.contentWindow?.postMessage(payload, "*");
+    };
+
     if (playerReadyRef.current) {
       sendNow();
     } else {
@@ -302,9 +348,10 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
           <iframe
             id="ytPlayer"
             title="bgm"
-            width="0"
-            height="0"
-            src="https://www.youtube.com/embed/oC5ZkmFvydk?enablejsapi=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=oC5ZkmFvydk"
+            width="1"
+            height="1"
+            src={playerSrc}
+            style={{ position: "absolute", opacity: 0, pointerEvents: "none" }}
             allow="autoplay; encrypted-media"
           />
         </div>
@@ -396,7 +443,7 @@ export default function DtoC() {
       <div style={container}>
         <h1 style={{ margin: "6px 0 10px" }}>Carina's page 💗</h1>
         <p style={{ opacity: 0.8, marginTop: 0 }}>
-          I wrote this properly, not copy paste one.
+          I wrote this properly okkk, not copy paste one hor.
         </p>
 
         <div
@@ -407,7 +454,7 @@ export default function DtoC() {
           }}
         >
           <div style={card}>
-            <h2 style={{ margin: "0 0 8px", fontSize: 18 }}>My rpromises to you this year 💗</h2>
+            <h2 style={{ margin: "0 0 8px", fontSize: 18 }}>My promises to you this year 💗</h2>
             <p style={{ marginTop: 0, opacity: 0.75, fontSize: 13 }}>
               for {toName}, from {fromName}
             </p>
@@ -445,7 +492,7 @@ export default function DtoC() {
               <textarea
                 value={wish}
                 onChange={(e) => setWish(e.target.value)}
-                placeholder="My Wish This Y…"
+                placeholder="My Wish This Year…"
                 rows={7}
                 style={{
                   width: "100%",
