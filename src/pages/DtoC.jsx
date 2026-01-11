@@ -14,64 +14,8 @@ const DtoC = () => {
   const micStreamRef = useRef(null);
   const rafIdRef = useRef(null);
 
-  const BDAY = { month: 1, day: 12, year: 2006 };
   const BDAY_NAME = "Carina";
-  const SG_TZ = "Asia/Singapore";
-
-  // Get Singapore date parts
-  const getSGDateParts = () => {
-    try {
-      const parts = new Intl.DateTimeFormat("en-GB", {
-        timeZone: SG_TZ,
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
-      }).formatToParts(new Date());
-
-      const dd = parseInt(parts.find(p => p.type === "day").value, 10);
-      const mm = parseInt(parts.find(p => p.type === "month").value, 10);
-      const yy = parseInt(parts.find(p => p.type === "year").value, 10);
-      return { dd, mm, yy };
-    } catch (e) {
-      const d = new Date();
-      return { dd: d.getDate(), mm: d.getMonth() + 1, yy: d.getFullYear() };
-    }
-  };
-
-  // Check if it's birthday week (Jan 12-18)
-  const isBirthdayWindowSG = () => {
-    const now = new Date();
-    let sgYear;
-    
-    try {
-      const y = new Intl.DateTimeFormat("en-GB", { 
-        timeZone: SG_TZ, 
-        year: "numeric" 
-      }).format(now);
-      sgYear = parseInt(y, 10);
-    } catch (e) {
-      sgYear = now.getFullYear();
-    }
-
-    const start = new Date(`${sgYear}-01-12T00:00:00`);
-    const end = new Date(`${sgYear}-01-19T00:00:00`);
-
-    const parts = new Intl.DateTimeFormat("en-CA", {
-      timeZone: SG_TZ,
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false
-    }).formatToParts(now);
-
-    const get = (t) => parts.find(p => p.type === t)?.value;
-    const sgNow = new Date(`${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}:${get("second")}`);
-
-    return sgNow >= start && sgNow < end;
-  };
+  const BDAY_YEAR = 2006;
 
   // Calculate age with ordinal suffix
   const getAgeText = () => {
@@ -81,16 +25,13 @@ const DtoC = () => {
       return n + (s[(v - 20) % 10] || s[v] || s[0]);
     };
 
-    const { yy, mm, dd } = getSGDateParts();
-    let age = yy - BDAY.year;
-    if (mm < BDAY.month || (mm === BDAY.month && dd < BDAY.day)) age -= 1;
+    const currentYear = new Date().getFullYear();
+    const age = currentYear - BDAY_YEAR;
     return ordinal(age);
   };
 
-  // Load YouTube IFrame API
+  // Always show birthday intro (no date-lock)
   useEffect(() => {
-    if (!isBirthdayWindowSG()) return;
-
     setShowIntro(true);
 
     // Load YouTube API
@@ -249,19 +190,6 @@ const DtoC = () => {
       if (typeof window.spawnHearts === 'function') window.spawnHearts(18);
     }, 700);
   };
-
-  if (!showIntro) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-purple-900 flex items-center justify-center p-6">
-        <Helmet>
-          <title>Special Page | Ape Champs Swim</title>
-        </Helmet>
-        <div className="text-center text-white/70">
-          <p className="text-lg">This page is only available during a special time 💜</p>
-        </div>
-      </div>
-    );
-  }
 
   const ageText = getAgeText();
   const name = new URLSearchParams(window.location.search).get('to') || BDAY_NAME;
