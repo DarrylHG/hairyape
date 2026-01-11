@@ -43,7 +43,7 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
   useEffect(() => {
     const origin = window.location.origin;
     setPlayerSrc(
-      `https://www.youtube.com/embed/3nHgx6lhcQY?enablejsapi=1&start=20&autoplay=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=3nHgx6lhcQY&origin=${encodeURIComponent(origin)}`
+      `https://www.youtube.com/embed/MkNeIUgNPQ8?enablejsapi=1&start=20&autoplay=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=MkNeIUgNPQ8&origin=${encodeURIComponent(origin)}`
     );
   }, []);
 
