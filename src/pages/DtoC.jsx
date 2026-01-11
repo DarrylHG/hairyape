@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 function ordinal(n) {
   const s = ["th", "st", "nd", "rd"], v = n % 100;
@@ -279,23 +280,21 @@ export default function DtoC() {
 
     setSending(true);
     try {
-      const res = await fetch("/api/bday-wish", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          toName,
-          fromName,
-          wish: trimmed,
-          page: window.location.pathname,
-          ua: navigator.userAgent,
-        }),
-      });
+      await emailjs.send(
+        "service_houufy7", // EmailJS service ID
+        "YOUR_TEMPLATE_ID", // replace with your template ID
+        {
+          to_name: toName,
+          from_name: fromName,
+          message: trimmed,
+        },
+        "YOUR_PUBLIC_KEY" // replace with your public key
+      );
 
-      if (!res.ok) throw new Error("send failed");
       setWish("");
       setStatus("Sent 💌 I’ll read it soon.");
     } catch (err) {
-      setStatus("Oops failed to send 😭 try again later.");
+      setStatus("Failed to send 😭 try again.");
     } finally {
       setSending(false);
     }
