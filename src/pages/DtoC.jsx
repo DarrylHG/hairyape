@@ -43,9 +43,7 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
   useEffect(() => {
     const origin = window.location.origin;
     setPlayerSrc(
-      `https://www.youtube.com/embed/oC5ZkmFvydk?enablejsapi=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=oC5ZkmFvydk&origin=${encodeURIComponent(
-        origin
-      )}`
+      `https://www.youtube.com/embed/oC5ZkmFvydk?enablejsapi=1&autoplay=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=oC5ZkmFvydk&origin=${encodeURIComponent(origin)}`
     );
   }, []);
 
@@ -57,6 +55,8 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
         events: {
           onReady: () => {
             playerReadyRef.current = true;
+            sendPlayerCommand("playVideo");
+            sendPlayerCommand("unMute");
             sendPlayerCommand("setVolume", [volume]);
             pendingPlayerCommands.current.forEach((fn) => fn());
             pendingPlayerCommands.current = [];
