@@ -78,16 +78,33 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
           const rms = Math.sqrt(sum / data.length);
 
           if (rms > 18 && cooldown <= 0) {
-            if (blowCountRef.current === 0) {
-              blowCountRef.current = 1;
-              setMsg("almost there... one more blow!");
-              cooldown = 30;
-            } else {
+            setFlamesOff((prev) => {
+              if (prev.every(Boolean)) return prev;
+
+              if (blowCountRef.current === 0) {
+                const remaining = prev
+                  .map((off, idx) => (!off ? idx : -1))
+                  .filter((idx) => idx >= 0);
+                const target = Math.min(remaining.length, 2 + Math.floor(Math.random() * 2));
+                const next = [...prev];
+
+                for (let i = 0; i < target; i++) {
+                  const pick = Math.floor(Math.random() * remaining.length);
+                  const candleIdx = remaining.splice(pick, 1)[0];
+                  next[candleIdx] = true;
+                }
+
+                blowCountRef.current = 1;
+                setMsg("almost there... one more blow!");
+                cooldown = 30;
+                return next;
+              }
+
               blowCountRef.current = 0;
-              setFlamesOff([true, true, true, true, true]);
               setMsg("candles out! make a wish ✨");
               cooldown = 40;
-            }
+              return prev.map(() => true);
+            });
           }
 
           cooldown = Math.max(cooldown - 1, 0);
