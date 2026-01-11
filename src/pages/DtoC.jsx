@@ -183,7 +183,10 @@ const DtoC = () => {
     }
   };
 
-  const handleEnter = () => {
+  const handleEnter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     setFadeOut(true);
     setTimeout(() => {
       setShowIntro(false);
@@ -230,11 +233,11 @@ const DtoC = () => {
           </div>
 
           <div className="bday-actions">
-            <button onClick={handleMicToggle} className="btn">
+            <button type="button" onClick={handleMicToggle} className="btn">
               {micActive ? 'Disable mic ✋' : 'Enable mic 🎤'}
             </button>
-            <button onClick={handleUnmute} className="btn">Unmute music 🔊</button>
-            <button onClick={handleEnter} className="btn primary">enter ♡</button>
+            <button type="button" onClick={handleUnmute} className="btn">Unmute music 🔊</button>
+            <button type="button" onClick={handleEnter} className="btn primary">enter ♡</button>
           </div>
 
           {message && <p className="bday-msg">{message}</p>}
