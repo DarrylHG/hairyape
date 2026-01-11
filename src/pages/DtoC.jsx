@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import emailjs from "@emailjs/browser";
 
+const EMAILJS_SERVICE_ID = "service_houufy7";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // replace with your EmailJS template ID
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";   // replace with your EmailJS public key
+
 function ordinal(n) {
   const s = ["th", "st", "nd", "rd"], v = n % 100;
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
@@ -278,17 +282,25 @@ export default function DtoC() {
       return;
     }
 
+    if (
+      EMAILJS_TEMPLATE_ID === "YOUR_TEMPLATE_ID" ||
+      EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY"
+    ) {
+      setStatus("Configure EmailJS template/public key first.");
+      return;
+    }
+
     setSending(true);
     try {
       await emailjs.send(
-        "service_houufy7", // EmailJS service ID
-        "YOUR_TEMPLATE_ID", // replace with your template ID
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         {
           to_name: toName,
           from_name: fromName,
           message: trimmed,
         },
-        "YOUR_PUBLIC_KEY" // replace with your public key
+        EMAILJS_PUBLIC_KEY
       );
 
       setWish("");
