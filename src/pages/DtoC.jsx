@@ -34,6 +34,41 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
   const [msg, setMsg] = useState("");
   const [flamesOff, setFlamesOff] = useState([false, false, false, false, false]);
   const blowCountRef = useRef(0);
+  const playerReadyRef = useRef(false);
+  const pendingPlayerCommands = useRef([]);
+  const [volume, setVolume] = useState(60);
+
+  useEffect(() => {
+    const onMessage = (event) => {
+      if (!event?.data) return;
+      let data;
+      try {
+        data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
+      } catch {
+        return;
+      }
+      if (data?.event === "onReady") {
+        playerReadyRef.current = true;
+        pendingPlayerCommands.current.forEach((fn) => fn());
+        pendingPlayerCommands.current = [];
+        sendPlayerCommand("setVolume", [volume]);
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [volume]);
+
+  const sendPlayerCommand = (func, args = []) => {
+    const iframe = document.getElementById("ytPlayer");
+    if (!iframe) return;
+    const payload = JSON.stringify({ event: "command", func, args });
+    const sendNow = () => iframe.contentWindow?.postMessage(payload, "*");
+    if (playerReadyRef.current) {
+      sendNow();
+    } else {
+      pendingPlayerCommands.current.push(sendNow);
+    }
+  };
 
   useEffect(() => {
     const existing = document.getElementById("yt-api");
@@ -230,18 +265,31 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
             type="button"
             className="btn"
             onClick={() => {
-              const iframe = document.getElementById("ytPlayer");
-              if (!iframe) return;
-              const cmd = (func, args = []) =>
-                iframe.contentWindow?.postMessage(JSON.stringify({ event: "command", func, args }), "*");
-              cmd("seekTo", [20, true]);
-              cmd("unMute");
-              cmd("playVideo");
+              sendPlayerCommand("seekTo", [20, true]);
+              sendPlayerCommand("unMute");
+              sendPlayerCommand("playVideo");
+              sendPlayerCommand("setVolume", [volume]);
               setMsg("ok... our song now 🥹💗");
             }}
           >
             Unmute music 🔊
           </button>
+
+          <label style={{ display: "flex", alignItems: "center", gap: 8, color: "white" }}>
+            Volume
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={volume}
+              onChange={(e) => {
+                const val = Number(e.target.value);
+                setVolume(val);
+                sendPlayerCommand("setVolume", [val]);
+              }}
+              style={{ width: 160 }}
+            />
+          </label>
 
           <button type="button" className="btn primary" onClick={onEnter}>
             enter ♡
@@ -257,7 +305,7 @@ function BirthdayIntro({ toName, ageText, onEnter }) {
             width="0"
             height="0"
             src="https://www.youtube.com/embed/oC5ZkmFvydk?enablejsapi=1&controls=0&rel=0&playsinline=1&mute=1&loop=1&playlist=oC5ZkmFvydk"
-            allow="autoplay"
+            allow="autoplay; encrypted-media"
           />
         </div>
       </div>
@@ -359,7 +407,7 @@ export default function DtoC() {
           }}
         >
           <div style={card}>
-            <h2 style={{ margin: "0 0 8px", fontSize: 18 }}>My promises to you this year 💗</h2>
+            <h2 style={{ margin: "0 0 8px", fontSize: 18 }}>My rpromises to you this year 💗</h2>
             <p style={{ marginTop: 0, opacity: 0.75, fontSize: 13 }}>
               for {toName}, from {fromName}
             </p>
@@ -397,7 +445,7 @@ export default function DtoC() {
               <textarea
                 value={wish}
                 onChange={(e) => setWish(e.target.value)}
-                placeholder="Dear Darryl…"
+                placeholder="My Wish This Y…"
                 rows={7}
                 style={{
                   width: "100%",
