@@ -15,6 +15,7 @@ import Contact from "./pages/Contact.jsx";
 import CoachPortal from "./pages/CoachPortal";
 import Terms from "./pages/Terms.jsx";
 import Reviews from "./pages/Reviews.jsx";
+import DtoC from "./pages/DtoC.jsx";
 
 function App() {
   // ✅ Auto-hide WhatsApp button on scroll down, show on scroll up
@@ -56,6 +57,7 @@ function App() {
           <Route path="/coach-portal" element={<CoachPortal />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/Reviews" element={<Reviews />} />
+          <Route path="/DtoC" element={<DtoC />} />
         </Routes>
 
         {/* ✅ WhatsApp floating button (bottom-right) + tooltip + auto-hide */}
