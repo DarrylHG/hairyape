@@ -300,7 +300,7 @@ export default function DtoC() {
       "linear-gradient(160deg, #0b0b10, #1a0b1e)",
   };
 
-  const container = { maxWidth: 980, margin: "0 auto" };
+  const container = { maxWidth: 980, margin: "0 auto", color: "white" };
 
   const card = {
     border: "1px solid rgba(255,255,255,.12)",
@@ -365,7 +365,7 @@ export default function DtoC() {
           <div style={card}>
             <h2 style={{ margin: "0 0 8px", fontSize: 18 }}>Type your birthday wish 🎈</h2>
             <p style={{ marginTop: 0, opacity: 0.75, fontSize: 13 }}>
-              When you press send, it goes to my email.
+              When you press send, your wish will come true ✨ (to the best of my ability)
             </p>
 
             <form onSubmit={sendWish}>
