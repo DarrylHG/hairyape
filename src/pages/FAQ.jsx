@@ -324,6 +324,11 @@ export default function FAQ() {
                       Kids swimming safety SOPs
                     </Link>
                   </li>
+                    <li>
+                      <Link className="text-cyan-700 font-semibold underline" to="/best-kids-swimming-lessons-singapore">
+                        Best kids swimming lessons in Singapore, how to choose
+                      </Link>
+                    </li>
                 </ul>
               </div>
               <Link to="/Contact">
