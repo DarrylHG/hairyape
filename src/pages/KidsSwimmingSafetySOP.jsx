@@ -18,11 +18,11 @@ export default function KidsSwimmingSafetySOP() {
     },
     {
       title: "Class ratios and supervision",
-      detail: "Private or very small groups in condo pools. Coach maintains arm&apos;s-length proximity for beginners.",
+      detail: "Private or very small groups in condo pools. Coach maintains arm's-length proximity for beginners.",
     },
     {
       title: "Emergency readiness",
-      detail: "Coach carries a whistle, has a clear exit path, and aligns with condo security for incident response.",
+      detail: "Coach carries a first-aid kit, has a clear exit path, and aligns with condo security for incident response.",
     },
     {
       title: "Progress tracking",
