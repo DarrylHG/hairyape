@@ -51,10 +51,10 @@ export default function BestKidsSwimmingLessonsSingapore() {
           </div>
         </section>
 
-        <section className="bg-white">
+        <section className="bg-white text-slate-900">
           <div className="container mx-auto px-4 py-12 md:py-16">
             <div className="grid lg:grid-cols-[2fr,1fr] gap-10 lg:gap-16">
-              <div className="prose max-w-none prose-slate">
+              <div className="prose max-w-none prose-slate prose-headings:text-slate-900 prose-p:text-slate-700 prose-li:text-slate-700">
                 <h2>What makes a kids swimming programme “best”</h2>
                 <p>
                   The best kids swimming lessons are not about rushing strokes.
