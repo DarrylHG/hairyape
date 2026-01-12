@@ -1,6 +1,6 @@
 import React from "react";
 import JsonLd from "../seo/JsonLd";
-import { webPageSchema, serviceSchema, SITE } from "../seo/schema";
+import { webPageSchema } from "../seo/geoSchemas";
 
 export default function KidsSwimmingSafetySOP() {
   const steps = [
@@ -33,15 +33,12 @@ export default function KidsSwimmingSafetySOP() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 space-y-10">
       <JsonLd
-        data={[
-          webPageSchema({
-            name: "Kids Swimming Safety SOP (Condo Pools, Singapore)",
-            url: `${SITE.url}/kids-swimming-safety-sop`,
-            description:
-              "Safety-first SOP for kids swimming lessons conducted exclusively at condominium pools in Singapore.",
-          }),
-          serviceSchema(),
-        ]}
+        data={webPageSchema({
+          url: "https://apechampsswim.com.sg/kids-swimming-safety-sop",
+          name: "Kids Swimming Safety SOP",
+          description:
+            "Safety SOPs and best practices for kids swimming lessons in Singapore, including lightning and weather considerations.",
+        })}
       />
       <header className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-700">Safety SOP</p>

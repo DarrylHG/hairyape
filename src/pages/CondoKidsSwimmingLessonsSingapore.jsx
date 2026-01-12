@@ -1,6 +1,6 @@
 import React from "react";
 import JsonLd from "../seo/JsonLd";
-import { webPageSchema, serviceSchema, SITE } from "../seo/schema";
+import { webPageSchema, geoServiceSchema } from "../seo/geoSchemas";
 
 export default function CondoKidsSwimmingLessonsSingapore() {
   return (
@@ -8,12 +8,17 @@ export default function CondoKidsSwimmingLessonsSingapore() {
       <JsonLd
         data={[
           webPageSchema({
+            url: "https://apechampsswim.com.sg/condo-kids-swimming-lessons-singapore",
             name: "Condo Kids Swimming Lessons in Singapore",
-            url: `${SITE.url}/condo-kids-swimming-lessons-singapore`,
             description:
-              "Private kids swimming lessons in Singapore delivered exclusively at condominium pools with safety-focused coaching.",
+              "Guide to private kids swimming lessons conducted at condominium pools in Singapore, including how lessons work, structure, and suitability.",
           }),
-          serviceSchema(),
+          geoServiceSchema({
+            url: "https://apechampsswim.com.sg/condo-kids-swimming-lessons-singapore",
+            name: "Private Condo Kids Swimming Lessons",
+            description:
+              "Private kids swimming lessons conducted at condominium pools in Singapore, with structured progression and safety-focused coaching.",
+          }),
         ]}
       />
       <header className="space-y-3">

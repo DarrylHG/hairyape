@@ -306,28 +306,26 @@ export default function FAQ() {
                 your child&apos;s age, swimming background and preferred
                 location. We&apos;ll reply with a personalised recommendation.
               </p>
-              <ul className="text-sm space-y-2 mb-6">
-                <li>
-                  <Link to="/condo-kids-swimming-lessons-singapore" className="text-cyan-700 font-semibold underline">
-                    How condo kids swimming lessons work
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/private-vs-group-kids-swimming-lessons" className="text-cyan-700 font-semibold underline">
-                    Private vs group kids swimming lessons
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/kids-swimming-safety-sop" className="text-cyan-700 font-semibold underline">
-                    Kids swimming safety SOPs
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/best-kids-swimming-lessons-singapore" className="text-cyan-700 font-semibold underline">
-                    Best kids swimming lessons in Singapore
-                  </Link>
-                </li>
-              </ul>
+              <div className="mt-6 border-t border-sky-200 pt-5">
+                <h3 className="text-sm md:text-base font-bold text-slate-800 mb-3">Helpful guides</h3>
+                <ul className="space-y-2 text-sm md:text-base">
+                  <li>
+                    <Link className="text-cyan-700 font-semibold underline" to="/condo-kids-swimming-lessons-singapore">
+                      How condo kids swimming lessons work in Singapore
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="text-cyan-700 font-semibold underline" to="/private-vs-group-kids-swimming-lessons">
+                      Private vs group kids swimming lessons
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="text-cyan-700 font-semibold underline" to="/kids-swimming-safety-sop">
+                      Kids swimming safety SOPs
+                    </Link>
+                  </li>
+                </ul>
+              </div>
               <Link to="/Contact">
                 <Button className="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold rounded-full px-6 py-3 text-sm md:text-base">
                   Contact Our Team
