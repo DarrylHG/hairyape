@@ -18,7 +18,7 @@ export default function PrivateVsGroupKidsSwimmingLessons() {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 space-y-10 text-slate-900">
+    <div className="max-w-4xl mx-auto px-4 py-12 space-y-10 text-white">
       <JsonLd
         data={webPageSchema({
           url: "https://apechampsswim.com.sg/private-vs-group-kids-swimming-lessons",
@@ -29,8 +29,8 @@ export default function PrivateVsGroupKidsSwimmingLessons() {
       />
       <header className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-700">Geo FAQ</p>
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900">Private vs Group Kids Swimming Lessons</h1>
-        <p className="text-slate-700 text-lg leading-relaxed">
+        <h1 className="text-3xl md:text-4xl font-bold text-white">Private vs Group Kids Swimming Lessons</h1>
+        <p className="text-slate-100 text-lg leading-relaxed">
           Private swimming lessons are better for young children because they allow full coach attention, safer pacing, and faster confidence-building.
           This is especially effective in condominium pools where children are already familiar with the environment.
         </p>
