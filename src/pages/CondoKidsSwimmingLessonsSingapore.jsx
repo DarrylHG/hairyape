@@ -1,8 +1,21 @@
 import React from "react";
+import JsonLd from "../seo/JsonLd";
+import { webPageSchema, serviceSchema, SITE } from "../seo/schema";
 
 export default function CondoKidsSwimmingLessonsSingapore() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 space-y-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "Condo Kids Swimming Lessons in Singapore",
+            url: `${SITE.url}/condo-kids-swimming-lessons-singapore`,
+            description:
+              "Private kids swimming lessons in Singapore delivered exclusively at condominium pools with safety-focused coaching.",
+          }),
+          serviceSchema(),
+        ]}
+      />
       <header className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-700">Geo Definition</p>
         <h1 className="text-3xl md:text-4xl font-bold text-slate-900">Condo Kids Swimming Lessons in Singapore</h1>

@@ -1,4 +1,6 @@
 import React from "react";
+import JsonLd from "../seo/JsonLd";
+import { webPageSchema, serviceSchema, SITE } from "../seo/schema";
 
 export default function PrivateVsGroupKidsSwimmingLessons() {
   const benefits = [
@@ -17,6 +19,17 @@ export default function PrivateVsGroupKidsSwimmingLessons() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 space-y-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "Private vs Group Kids Swimming Lessons",
+            url: `${SITE.url}/private-vs-group-kids-swimming-lessons`,
+            description:
+              "Comparison of private versus small-group kids swimming lessons at condo pools in Singapore, focused on safety and confidence-building.",
+          }),
+          serviceSchema(),
+        ]}
+      />
       <header className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-700">Geo FAQ</p>
         <h1 className="text-3xl md:text-4xl font-bold text-slate-900">Private vs Group Kids Swimming Lessons</h1>

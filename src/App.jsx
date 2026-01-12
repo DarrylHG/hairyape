@@ -19,6 +19,7 @@ import DtoC from "./pages/DtoC.jsx";
 import CondoKidsSwimmingLessonsSingapore from "./pages/CondoKidsSwimmingLessonsSingapore.jsx";
 import PrivateVsGroupKidsSwimmingLessons from "./pages/PrivateVsGroupKidsSwimmingLessons.jsx";
 import KidsSwimmingSafetySOP from "./pages/KidsSwimmingSafetySOP.jsx";
+import BestKidsSwimmingLessonsSingapore from "./pages/BestKidsSwimmingLessonsSingapore.jsx";
 
 function App() {
   // ✅ Auto-hide WhatsApp button on scroll down, show on scroll up
@@ -63,6 +64,7 @@ function App() {
       <Route path="/condo-kids-swimming-lessons-singapore" element={<CondoKidsSwimmingLessonsSingapore />} />
       <Route path="/private-vs-group-kids-swimming-lessons" element={<PrivateVsGroupKidsSwimmingLessons />} />
       <Route path="/kids-swimming-safety-sop" element={<KidsSwimmingSafetySOP />} />
+      <Route path="/best-kids-swimming-lessons-singapore" element={<BestKidsSwimmingLessonsSingapore />} />
     </Routes>
   );
 

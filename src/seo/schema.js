@@ -40,6 +40,16 @@ export function serviceSchema() {
   };
 }
 
+export function webPageSchema({ name, url, description }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    url,
+    description,
+  };
+}
+
 export function faqPageSchema(faqs = []) {
   return {
     "@context": "https://schema.org",

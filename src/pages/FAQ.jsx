@@ -306,6 +306,28 @@ export default function FAQ() {
                 your child&apos;s age, swimming background and preferred
                 location. We&apos;ll reply with a personalised recommendation.
               </p>
+              <ul className="text-sm space-y-2 mb-6">
+                <li>
+                  <Link to="/condo-kids-swimming-lessons-singapore" className="text-cyan-700 font-semibold underline">
+                    How condo kids swimming lessons work
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/private-vs-group-kids-swimming-lessons" className="text-cyan-700 font-semibold underline">
+                    Private vs group kids swimming lessons
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/kids-swimming-safety-sop" className="text-cyan-700 font-semibold underline">
+                    Kids swimming safety SOPs
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/best-kids-swimming-lessons-singapore" className="text-cyan-700 font-semibold underline">
+                    Best kids swimming lessons in Singapore
+                  </Link>
+                </li>
+              </ul>
               <Link to="/Contact">
                 <Button className="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold rounded-full px-6 py-3 text-sm md:text-base">
                   Contact Our Team
