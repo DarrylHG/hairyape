@@ -4,7 +4,7 @@ import { webPageSchema, geoServiceSchema } from "../seo/geoSchemas";
 
 export default function CondoKidsSwimmingLessonsSingapore() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 space-y-10 text-slate-900">
+    <div className="max-w-4xl mx-auto px-4 py-12 space-y-10 text-white">
       <JsonLd
         data={[
           webPageSchema({
@@ -22,9 +22,9 @@ export default function CondoKidsSwimmingLessonsSingapore() {
         ]}
       />
       <header className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-700">Geo Definition</p>
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900">Condo Kids Swimming Lessons in Singapore</h1>
-        <p className="text-slate-700 text-lg leading-relaxed">
+        <p className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-200">Geo Definition</p>
+        <h1 className="text-3xl md:text-4xl font-bold text-white">Condo Kids Swimming Lessons in Singapore</h1>
+        <p className="text-slate-100 text-lg leading-relaxed">
           Ape Champs Swim is a private kids swimming school in Singapore that conducts lessons exclusively at condominium swimming pools.
           We specialise in structured, safety-focused swimming lessons for children, delivered through personalised coaching in familiar condo environments.
         </p>
