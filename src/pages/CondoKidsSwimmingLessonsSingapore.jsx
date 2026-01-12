@@ -4,7 +4,7 @@ import { webPageSchema, geoServiceSchema } from "../seo/geoSchemas";
 
 export default function CondoKidsSwimmingLessonsSingapore() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 space-y-10">
+    <div className="max-w-4xl mx-auto px-4 py-12 space-y-10 text-slate-900">
       <JsonLd
         data={[
           webPageSchema({
