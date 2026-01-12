@@ -1,8 +1,9 @@
 // src/pages/FAQ.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
+import JsonLd from "../seo/JsonLd";
+import { faqPageSchema } from "../seo/schema";
 import {
   Accordion,
   AccordionItem,
@@ -11,116 +12,60 @@ import {
 } from "@/components/ui/accordion";
 
 export default function FAQ() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How are the lessons structured?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Lessons run once a week for 30 or 45 minutes depending on the programme. We follow a clear progression from water confidence and submersion, to basic propulsion and floating, formal strokes such as freestyle and backstroke, and finally endurance and stroke refinement."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Where are lessons held?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Lessons are mainly conducted at condominium pools and landed residentials. Families can share their preferred estate or area and we will match them with the nearest available coach or suggest a convenient pool."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can my child try one class first?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. We encourage a trial lesson so your child can meet the coach and experience our teaching style. After the trial, we will recommend a suitable programme and schedule."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What should my child bring for class?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Children should bring proper swimwear, goggles or a swim cap if needed, a towel, and a change of clothes. Floatation devices should only be brought if recommended by the coach."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What happens if it rains or there is lightning?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Safety comes first. If there is lightning risk or heavy rain that affects visibility, lessons may be paused or postponed. Coaches will contact families regarding make-up arrangements where possible."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are your coaches qualified?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Our coaches hold recognised swim coaching and lifesaving certifications, and many are NROC-registered. We also assess their experience with young children and their ability to create a fun and encouraging environment."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you offer lessons for adults or special needs swimmers?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. We offer adult learn-to-swim, water confidence sessions and special needs classes, subject to coach availability. Families can share their needs during enquiry and we will advise on the best fit."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Where can I read your Terms & Conditions about lessons?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Our full Terms and Conditions are available on the Terms and Conditions page of our website."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What age should my child start swimming lessons?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Children can be introduced to water from as young as 6 months through gentle water orientation. Most children start structured lessons around 3 to 4 years old, when they can follow simple instructions and coordinate basic movements."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What should I look for in a good swimming class for children?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Parents should look for qualified coaches with recognised credentials, a safe coach-to-student ratio, and clear lesson progression from confidence building to floating, kicking, breathing and basic strokes. A good class should be structured but still enjoyable."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How long does it take for kids to learn to swim?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The learning timeline depends on a child's age, water confidence and lesson consistency. For many beginners, it may take about 20 to 30 consistent sessions to swim confidently across a pool, with further time needed to develop technique and stamina."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are private or group swimming classes better for children?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Both options can work depending on the child. Private lessons offer focused attention and faster confidence building, while group lessons provide social learning and motivation. Some families start with private lessons before transitioning to group classes."
-        }
-      }
-    ]
-  };
+  const faqs = [
+    {
+      q: "How are the lessons structured?",
+      a: "Lessons run once a week for 30 or 45 minutes with a progression from water confidence to floating, strokes, and endurance.",
+    },
+    {
+      q: "Where are lessons held?",
+      a: "Lessons are conducted mainly at condominium pools and landed residences across Singapore, matched to your preferred estate or area.",
+    },
+    {
+      q: "Can my child try one class first?",
+      a: "Yes, we encourage a trial lesson so your child can meet the coach before we recommend the right programme and schedule.",
+    },
+    {
+      q: "What should my child bring for class?",
+      a: "Bring swimwear, goggles or swim cap if needed, a towel, a change of clothes, and only coach-recommended floatation aids.",
+    },
+    {
+      q: "What happens if it rains or there is lightning?",
+      a: "If lightning risk or heavy rain affects visibility, lessons pause or postpone and coaches arrange make-up options where possible.",
+    },
+    {
+      q: "Are your coaches qualified?",
+      a: "Coaches hold recognised swim coaching and lifesaving certifications, many are NROC-registered, and all are vetted for working with kids.",
+    },
+    {
+      q: "Do you offer lessons for adults or special needs swimmers?",
+      a: "Yes, we offer adult and special-needs lessons subject to coach availability; share your needs and we will advise the best fit.",
+    },
+    {
+      q: "Where can I read your Terms & Conditions about lessons?",
+      a: "Our full Terms and Conditions are available on the Terms page of our website.",
+    },
+    {
+      q: "What age should my child start swimming lessons?",
+      a: "Kids can start gentle water orientation from 6 months; most begin structured lessons at 3–4 years when they follow instructions better.",
+    },
+    {
+      q: "What should I look for in a good swimming class for children?",
+      a: "Look for qualified coaches, safe ratios, and clear progression from confidence to floating, kicking, breathing, and basic strokes.",
+    },
+    {
+      q: "How long does it take for kids to learn to swim?",
+      a: "Timelines vary; many beginners need about 20–30 consistent sessions to swim across a pool confidently, with more time for technique.",
+    },
+    {
+      q: "Are private or group swimming classes better for children?",
+      a: "Private lessons give focused attention and faster confidence; small groups add social motivation—choose based on your child’s needs.",
+    },
+  ];
 
   return (
     <>
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(faqJsonLd)}
-        </script>
-      </Helmet>
+      <JsonLd data={faqPageSchema(faqs)} />
 
       <div className="bg-slate-900 min-h-screen">
       {/* Hero */}

@@ -4,10 +4,13 @@ import { createPageUrl } from '../utils';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck, Award, Smile, MapPin } from 'lucide-react';
 import LocationImg from "@/assets/images/ACSS-C-to-S.jpeg";
+import JsonLd from "../seo/JsonLd";
+import { orgSchema, localBusinessSchema, serviceSchema } from "../seo/schema";
 
 export default function Home() {
   return (
     <div className="flex flex-col">
+      <JsonLd data={[orgSchema(), localBusinessSchema(), serviceSchema()]} />
       {/* Hero Section */}
       <section className="relative bg-cyan-900 overflow-hidden">
         {/* Background Image Overlay */}
