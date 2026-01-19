@@ -266,7 +266,12 @@ Thank you! Please share available trial slots.`;
                     <Mail className="mt-0.5 h-5 w-5 text-cyan-300" />
                     <div>
                       <p className="font-semibold text-white">Email</p>
-                      <p className="text-sky-100">hello@apechampsswim.com</p>
+                      <a
+                        href="mailto:hello@apechampsswim.com.sg"
+                        className="text-sky-100 hover:text-white"
+                      >
+                        hello@apechampsswim.com.sg
+                      </a>
                     </div>
                   </div>
 
