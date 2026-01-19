@@ -258,7 +258,14 @@ Thank you! Please share available trial slots.`;
                     <Phone className="mt-0.5 h-5 w-5 text-cyan-300" />
                     <div>
                       <p className="font-semibold text-white">WhatsApp</p>
-                      <p className="text-sky-100">+65 8951 0121</p>
+                      <a
+                        href="https://api.whatsapp.com/send?phone=6589510121&text=Hi%20Harry,%20I%20would%20like%20to%20enquire%20more%20about%20your%20swimming%20programmes%20available!"
+                        className="text-sky-100 hover:text-white"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        +65 8951 0121
+                      </a>
                     </div>
                   </div>
 
