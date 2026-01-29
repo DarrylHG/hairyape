@@ -88,17 +88,6 @@ export default function Programmes() {
             offers structured, age-appropriate programmes designed to build
             water confidence, proper technique and a lifelong love for swimming.
           </p>
-          
-          {/* Citation-friendly Quick Facts */}
-          <div className="bg-white rounded-2xl p-6 border border-sky-200 shadow-sm max-w-3xl">
-            <h2 className="text-xl font-bold text-slate-800 mb-4">Programme Overview</h2>
-            <ul className="space-y-2 text-slate-700 text-sm md:text-base">
-              <li><strong>ApeStart™ (0.5–4 years):</strong> Water confidence, bubbles, floating, kicking. Parent can be poolside. Duration: 30 mins/lesson.</li>
-              <li><strong>ApeCore™ (4–7 years):</strong> Learn-to-swim foundations. Freestyle & backstroke basics, breathing technique. Duration: 30-45 mins/lesson.</li>
-              <li><strong>SwimSafer (6–12 years):</strong> MOE-aligned national programme. Stages 1–6 with water safety, survival skills, stroke development. Duration: 45 mins/lesson.</li>
-              <li><strong>Stroke Refinement (8–12 years):</strong> All four strokes, endurance, lap swimming for confident swimmers. Duration: 45 mins/lesson.</li>
-            </ul>
-          </div>
         </div>
       </section>
 
