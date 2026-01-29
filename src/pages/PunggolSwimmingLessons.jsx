@@ -160,7 +160,7 @@ export default function PunggolSwimmingLessons() {
               <div className="space-y-6 text-slate-700">
                 <div className="bg-sky-50 rounded-2xl p-6 border border-sky-100">
                   <h3 className="text-xl font-bold text-slate-800 mb-3">
-                    For 6-Year-Old Complete Beginners
+                    For Complete Beginners Children
                   </h3>
                   <p className="mb-3">
                     <strong>First 4 lessons:</strong> Water confidence, bubbles,
@@ -297,7 +297,7 @@ export default function PunggolSwimmingLessons() {
               </div>
 
               <div className="mt-8 text-center">
-                <Link to={createPageUrl("Programmes")}>
+                <Link to="/programmes">
                   <Button className="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold rounded-full px-8 py-3">
                     View Full Programme Details
                   </Button>
