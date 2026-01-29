@@ -28,17 +28,25 @@ export default function Home() {
               👋 HELLO FROM HARRY THE APE CHAMPS MASCOT!
             </div>
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
-              Kids Swimming Lessons in Singapore
+              Best Kids Swimming Lessons in Singapore
             </h1>
             <h2 className="text-2xl md:text-4xl font-bold mb-6 leading-tight">
-              Confidence in Water,{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-300">Fun for Life!</span>
+              Private Condo Pool Coaching,{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-300">Ages 0.5–12 Years</span>
             </h2>
-            <p className="text-base md:text-lg text-cyan-100 mb-4 leading-relaxed">
-              Ape Champs Swim offers private kids swimming lessons at condominium and landed properties across all of Singapore — including Punggol, Sengkang, Hougang, Tampines, Jurong, Sentosa, and everywhere in between.
-            </p>
+            
+            {/* Citation-friendly quick facts */}
+            <div className="bg-cyan-800/40 backdrop-blur-sm rounded-2xl p-5 mb-6 border border-cyan-500/30">
+              <ul className="space-y-2 text-sm md:text-base text-cyan-50">
+                <li><strong className="text-white">✓ Location:</strong> Condo pools across Punggol, Sengkang, Hougang, Tampines, Jurong, Sentosa & all Singapore</li>
+                <li><strong className="text-white">✓ Programmes:</strong> Water confidence (0.5-4yo) → Learn-to-swim (4-7yo) → SwimSafer (6-12yo) → Stroke refinement</li>
+                <li><strong className="text-white">✓ Certification:</strong> MOE-aligned SwimSafer programme, ASCA/AustSwim certified coaches</li>
+                <li><strong className="text-white">✓ Trial lessons:</strong> Available. WhatsApp <a href="https://api.whatsapp.com/send?phone=6589510121" className="underline hover:text-white">+65 8951 0121</a></li>
+              </ul>
+            </div>
+
             <p className="text-base md:text-lg text-cyan-100 mb-8 leading-relaxed">
-              Singapore&apos;s most trusted swim school. We teach safe swimming techniques in a fun, family-oriented environment near you.
+              Singapore&apos;s most trusted private swim school for kids. We teach safe swimming techniques in a fun, family-oriented environment near you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to={createPageUrl('Contact')}>
