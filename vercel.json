@@ -2,8 +2,8 @@
   "redirects": [
     {
       "source": "/:path*",
-      "destination": "https://apechampswim.com.sg/:path*",
-      "has": [{ "type": "host", "value": "www.apechampswim.com.sg" }],
+      "destination": "https://apechampsswim.com.sg/:path*",
+      "has": [{ "type": "host", "value": "www.apechampsswim.com.sg" }],
       "permanent": true
     }
   ],
