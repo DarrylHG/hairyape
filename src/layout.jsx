@@ -55,17 +55,15 @@ function Layout({ children }) {
           {/* DESKTOP RIGHT SIDE */}
           <div className="hidden md:flex items-center gap-3">
             {/* Coach login icon */}
-            <NavLink
-              to="/coach-portal"
-              className={({ isActive }) =>
-                `inline-flex h-9 w-9 items-center justify-center rounded-full border
-                 border-sky-200 text-sky-700 hover:bg-sky-50 ${
-                   isActive ? "bg-sky-50" : ""
-                 }`
-              }
+            <a
+              href="https://app.apechampsswim.com.sg/welcome"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border
+                 border-sky-200 text-sky-700 hover:bg-sky-50"
             >
               <User className="h-4 w-4" />
-            </NavLink>
+            </a>
 
             {/* CTA */}
             <NavLink
@@ -120,8 +118,10 @@ function Layout({ children }) {
               ))}
 
               {/* NEW — Coach login icon for mobile */}
-              <NavLink
-                to="/coach-portal"
+              <a
+                href="https://app.apechampsswim.com.sg/welcome"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center gap-2 py-1 text-sky-900"
               >
@@ -132,7 +132,7 @@ function Layout({ children }) {
                   <User className="h-4 w-4" />
                 </div>
                 <span className="text-sky-900 font-medium">Attendance Login</span>
-              </NavLink>
+              </a>
 
               {/* Mobile CTA */}
               <NavLink
